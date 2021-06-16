@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import formatCurrency from "../../utils/formatCurrency";
 
 class Cart extends Component {
+  // componentDidUpdate(prevProps, prevState, snapshot) {
+  //   const {cartItems} = this.props;
+  //   localStorage.setItem(cartItems.name, )
+  // }
   render() {
     const {cartItems} = this.props;
     return (

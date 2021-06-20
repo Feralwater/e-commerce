@@ -1,7 +1,7 @@
 import data from './data.json'
 import React, {Component} from "react";
 import Products from "./components/products/Products";
-import {Container, CurrencyCart, Header, Main} from "./styleComponents/AppStyles";
+import {CartItemsTotal, Container, CurrencyCart, Header, Main} from "./styleComponents/AppStyles";
 import {Provider} from "react-redux";
 import store from "./store";
 import Navbar from "./components/navbar/Navbar";
@@ -74,6 +74,7 @@ class App extends Component {
       <Provider store={store}>
         <BrowserRouter>
           <Container>
+
             <Header>
               <Navbar/>
               <svg width="33" height="31" viewBox="0 0 33 31" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -128,8 +129,10 @@ class App extends Component {
                       fill="#43464E"/>
                   </svg>
                 </button>
+                <CartItemsTotal>{this.state.cartItems && this.state.cartItems.length}</CartItemsTotal>
               </CurrencyCart>
             </Header>
+
             <Main>
               {/*<Filter count={this.state.products.length}*/}
               {/*        size={this.props.size}*/}

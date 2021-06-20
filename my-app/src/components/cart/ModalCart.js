@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 import {
-  Buttons, CartBottomWrapper,
+  Buttons,
+  CartBottomWrapper,
   CheckButton,
   Content,
   ContentContainer,
-  Modal,
+  Modal, Title,
   Total,
   ViewButton
 } from "../../styleComponents/ModalCartStyle";
 import formatCurrency from "../../utils/formatCurrency";
+import ProductInCart from "../products/ProductInCart";
 
 
 class ModalCart extends Component {
@@ -19,9 +21,8 @@ class ModalCart extends Component {
       <Modal active={active} onClick={() => setModalActive(false)}>
         <ContentContainer onClick={(e) => e.stopPropagation()}>
           <Content>
-
-
-
+            <Title><span>My Bag</span>, {cartItems.length} items</Title>
+            <ProductInCart cartItems={cartItems}/>
             <CartBottomWrapper>
               <Total>
                 <p>Total</p>

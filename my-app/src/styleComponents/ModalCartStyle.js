@@ -31,12 +31,12 @@ export const Content = styled.div`
   right: 0;
   display: flex;
   flex-direction: column;
-  
+  overflow: auto;
 `;
 
 export const ViewButton = styled(Link)`
   display: inline-block;
-  padding: 1.3rem 3.6rem;
+  padding: 1.3rem 3rem;
   background: #FFFFFF;
   border: 1px solid #1D1F22;
   text-transform: uppercase;
@@ -74,4 +74,12 @@ export const Total = styled.div`
 `;
 export const CartBottomWrapper = styled.div`
   margin-top: auto;
+`;
+export const Title = styled.div`
+  font-size: 1.6rem;
+  line-height: 160%;
+  color: #1D1F22;
+  & span{
+    font-weight: 600;
+  }
 `;

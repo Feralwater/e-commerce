@@ -8,12 +8,24 @@ export const Ul = styled.ul`
   list-style-type: none;
   padding-inline-start: 0;
 `;
+export const RemoveButton = styled.button`
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+  padding: 1rem;
+  display: none;
+`;
 export const Li = styled.li`
   display: flex;
   width: 100%;
   height: 13.7rem;
   justify-content: space-between;
   margin-bottom: 4.1rem;
+  position: relative;
+
+  &:hover ${RemoveButton} {
+    display: block;
+  }
 `;
 export const CartImage = styled.div`
   width: 10.5rem;
@@ -65,3 +77,4 @@ export const CounterImageContainer = styled.div`
   justify-content: space-between;
   width: 14rem;
 `;
+

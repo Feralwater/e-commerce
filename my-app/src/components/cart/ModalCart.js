@@ -11,6 +11,8 @@ import {
 } from "../../styleComponents/ModalCartStyle";
 import formatCurrency from "../../utils/formatCurrency";
 import ProductInCart from "../products/ProductInCart";
+import {connect} from "react-redux";
+import {removeFromCart} from "../../actions/cartActions";
 
 
 class ModalCart extends Component {
@@ -42,4 +44,8 @@ class ModalCart extends Component {
   }
 }
 
-export default ModalCart;
+export default connect((state) => ({
+    cartItems: state.cart.cartItems,
+  }),
+  {removeFromCart}
+)(ModalCart);

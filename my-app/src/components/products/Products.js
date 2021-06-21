@@ -3,6 +3,7 @@ import formatCurrency from "../../utils/formatCurrency";
 import {connect} from "react-redux";
 import {fetchProducts} from "../../actions/productActions";
 import {A, CartButton, Currency, Img, ImgContainer, Li, ProductName, Ul} from "../../styleComponents/ProductsStyle";
+import {addToCart} from "../../actions/cartActions";
 
 class Products extends Component {
 
@@ -22,8 +23,8 @@ class Products extends Component {
 
               <Ul>
                 {this.props.products.map(product => (
-                  <Li key={product._id}>
-                    <A href={"#" + product._id}>
+                  <Li key={product.name}>
+                    <A href={"#" + product.name}>
                       <ImgContainer>
                         <Img src={product.gallery[0]} alt={product.title}/>
                       </ImgContainer>
@@ -63,5 +64,5 @@ class Products extends Component {
   }
 }
 
-export default connect((state) => ({products: state.products.items}), {fetchProducts})(Products);
-// export  {Products}
+export default connect((state) => ({products: state.products.items}), {fetchProducts , addToCart})(Products);
+

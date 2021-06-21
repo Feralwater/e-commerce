@@ -26,6 +26,8 @@ export const Li = styled.li`
   &:hover ${RemoveButton} {
     display: block;
   }
+  opacity: ${props => props.inStock ? '1' : '0.5'};
+  pointer-events: ${props => props.inStock ? 'all' : 'none'};
 `;
 export const CartImage = styled.div`
   width: 10.5rem;
@@ -70,6 +72,8 @@ export const Counter = styled.div`
     padding: .1rem .7rem;
     margin: 0;
     cursor: pointer;
+    user-select: none;
+    pointer-events: all;
   }
 `;
 export const CounterImageContainer = styled.div`

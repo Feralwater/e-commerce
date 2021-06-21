@@ -5,6 +5,7 @@ const CARD_QUERY = gql`
     query {
         category {
             products {
+                inStock
                 gallery
                 name
                 prices {

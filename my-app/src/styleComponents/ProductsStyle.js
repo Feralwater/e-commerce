@@ -28,6 +28,8 @@ export const A = styled.a`
   text-decoration: none;
   position: relative;
   padding: 1rem;
+  opacity: ${props => props.inStock ? '1' : '0.5'};
+  pointer-events: ${props => props.inStock ? 'all' : 'none'};
 
   &:hover ${CartButton} {
     display: flex;
@@ -35,6 +37,20 @@ export const A = styled.a`
 
   &:hover {
     box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+  }
+  
+  & span {
+    text-transform: uppercase;
+    font-size: 2.4rem;
+    position: absolute;
+    top: 50%;
+    display: ${props => props.inStock ? 'none' : 'flex'};
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-60%);
+    height: 100%;
+    color: #8D8F9A;
   }
 `;
 export const ImgContainer = styled.div`

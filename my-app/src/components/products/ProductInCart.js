@@ -8,26 +8,14 @@ import {
   Li,
   ProductDescription,
   ProductName,
-  ProductPrice, RemoveButton,
+  ProductPrice,
+  RemoveButton,
   Ul
 } from "../../styleComponents/ProductInCartStyle";
 import {connect} from "react-redux";
-import {removeFromCart} from "../../actions/cartActions";
+import {addToCart, counterDecrement, removeFromCart} from "../../actions/cartActions";
 
 class ProductInCart extends Component {
-
-  counterIncrement = () => {
-    // this.setState({
-    //   modalActive: boolean,
-    // })
-
-  }
-  counterDecrement = () => {
-    // this.setState({
-    //   modalActive: boolean,
-    // })
-
-  }
 
   render() {
     const {cartItems} = this.props;
@@ -36,7 +24,7 @@ class ProductInCart extends Component {
       <div>
         <Ul>
           {cartItems.map(item => (
-            <Li key={item.name}>
+            <Li inStock={item.inStock} key={item.name}>
               <ProductDescription>
                 <ProductName>{item.name}</ProductName>
                 <ProductPrice>
@@ -48,9 +36,9 @@ class ProductInCart extends Component {
               <CounterImageContainer>
 
                 <Counter>
-                  <p onClick={() => this.counterIncrement()}>+</p>
+                  <p onClick={() => this.props.addToCart(item)}>+</p>
                   <div>{item.count}</div>
-                  <p onClick={() => this.counterDecrement()}>-</p>
+                  <p onClick={() => this.props.counterDecrement(item)}>-</p>
                 </Counter>
 
                 <CartImage>
@@ -71,5 +59,5 @@ class ProductInCart extends Component {
 export default connect((state) => ({
     cartItems: state.cart.cartItems,
   }),
-  {removeFromCart}
+  {removeFromCart, counterDecrement, addToCart}
 )(ProductInCart);

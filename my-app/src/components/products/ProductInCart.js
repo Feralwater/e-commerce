@@ -35,7 +35,7 @@ class ProductInCart extends Component {
 
               <CounterImageContainer>
 
-                <Counter>
+                <Counter inStock={item.inStock}>
                   <p onClick={() => this.props.addToCart(item)}>+</p>
                   <div>{item.count}</div>
                   <p onClick={() => this.props.counterDecrement(item)}>-</p>

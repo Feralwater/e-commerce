@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {Link} from "react-router-dom";
 
 export const Ul = styled.ul`
   display: flex;
@@ -9,10 +10,6 @@ export const Ul = styled.ul`
   flex-wrap: wrap;
 `;
 
-export const Li = styled.li`
-  padding: 1rem;
-  margin: 2rem;
-`;
 export const CartButton = styled.button`
   display: none;
   background-color: #5ECE7B;
@@ -22,12 +19,10 @@ export const CartButton = styled.button`
   right: 3.1rem;
   bottom: 8.2rem;
 `;
-export const A = styled.a`
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  position: relative;
+export const Li = styled.li`
   padding: 1rem;
+  margin: 2rem;
+  position: relative;
   opacity: ${props => props.inStock ? '1' : '0.5'};
   pointer-events: ${props => props.inStock ? 'all' : 'none'};
 
@@ -35,10 +30,6 @@ export const A = styled.a`
     display: flex;
   }
 
-  &:hover {
-    box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
-  }
-  
   & span {
     text-transform: uppercase;
     font-size: 2.4rem;
@@ -51,6 +42,17 @@ export const A = styled.a`
     transform: translateY(-60%);
     height: 100%;
     color: #8D8F9A;
+  }
+`;
+export const A = styled(Link)`
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  padding: 1rem;
+
+  &:hover {
+    box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+    transform: scale(1.1);
   }
 `;
 export const ImgContainer = styled.div`

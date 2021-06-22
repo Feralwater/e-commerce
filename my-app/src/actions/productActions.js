@@ -8,9 +8,18 @@ const CARD_QUERY = gql`
                 inStock
                 gallery
                 name
+                description
                 prices {
                     currency
                     amount
+                }
+                attributes {
+                    type
+                    name
+                    items {
+                        displayValue
+                        value
+                    }
                 }
             }
         }

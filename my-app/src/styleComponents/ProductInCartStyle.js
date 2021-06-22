@@ -26,6 +26,7 @@ export const Li = styled.li`
   &:hover ${RemoveButton} {
     display: block;
   }
+
   opacity: ${props => props.inStock ? '1' : '0.5'};
   pointer-events: ${props => props.inStock ? 'all' : 'none'};
 `;
@@ -74,6 +75,10 @@ export const Counter = styled.div`
     cursor: pointer;
     user-select: none;
     pointer-events: all;
+  }
+
+  & p:first-child {
+    pointer-events: ${props => !props.inStock && 'none'};
   }
 `;
 export const CounterImageContainer = styled.div`

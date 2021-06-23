@@ -1,5 +1,5 @@
 import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
-import {FETCH_PRODUCTS} from "../types";
+import {CHANGE_IMAGE_IN_CARD, FETCH_PRODUCTS} from "../types";
 
 const CARD_QUERY = gql`
     query {
@@ -37,3 +37,5 @@ export const fetchProducts = () => async (dispatch) => {
     payload: response.data.category.products
   })
 }
+
+

@@ -17,90 +17,97 @@ import {
 import {fetchProducts} from "../../actions/productActions";
 import {connect} from "react-redux";
 import {Container} from "../../styleComponents/HomeStyles";
+import Header from "../header/Header";
+import {addToCart} from "../../actions/cartActions";
 
 class ProductScreen extends Component {
   constructor() {
     super();
     this.state = {
-      selectedImg: '',
+      imageIndex: 0,
     }
   }
 
-  componentDidMount() {
-    this.props.fetchProducts()
-  }
-
-  setSelectedImg = (img) => {
+  setSelectedImg = (index) => {
     this.setState({
-      selectedImg: img,
+      imageIndex: index,
     })
   }
 
+  componentDidMount() {
+    this.props.fetchProducts();
+  }
+
   render() {
-    const product = this.props.products.find(x => x.name === this.props.match.params.name)
+
+    const product = this.props.products?.find(x => x.name === this.props.match.params.name)
+
     return (<>
       {
         !this.props.products ?
           (<div>Loading...</div>)
           :
-          (<Container>
-            <Div>
+          (<>
+            <Header/>
+            <Container>
+              <Div>
 
 
-              <ImagesContainer>
-                <SmallImagesContainer>
-                  {product.gallery.map(img => (
-                    <img
-                      key={Math.floor(Math.random() * 10_0000)}
-                      src={img} alt={this.props.match.params.name}
-                      onClick={() => {
-                        this.setSelectedImg(img)
-                      }}
-                    />))
-                  }
-                </SmallImagesContainer>
-                <Img src={this.state.selectedImg} alt={this.props.match.params.name}/>
-              </ImagesContainer>
+                <ImagesContainer>
+                  <SmallImagesContainer>
+                    {product.gallery.map((img, index) => (
+                      <img
+                        key={Math.floor(Math.random() * 10_0000)}
+                        src={img} alt={this.props.match.params.name}
+                        onClick={() => {
+                          this.setSelectedImg(index)
+                        }}
+                      />))
+                    }
+                  </SmallImagesContainer>
+                  <Img src={product.gallery[this.state.imageIndex]} alt={this.props.match.params.name}/>
+                </ImagesContainer>
 
 
-              <DescriptionContainer>
-                <Name>{product.name}</Name>
-                <div>???</div>
-                <Description>
+                <DescriptionContainer>
+                  <Name>{product.name}</Name>
+                  <div>???</div>
+                  <Description>
 
-                  {product.attributes.map(x => x.type === 'swatch' ?
-                    (
-                      (<div key={Math.random() * 10_0000}>
-                          <Attributes>{x.name}:</Attributes>
-                          <AttributesContainer>
-                            {x.items.map(x =>
-                              <Span color={x.value} key={Math.random() * 10_0000}></Span>)
-                            }
-                          </AttributesContainer>
-                        </div>
+                    {product.attributes.map(x => x.type === 'swatch' ?
+                      (
+                        (<div key={Math.random() * 10_0000}>
+                            <Attributes>{x.name}:</Attributes>
+                            <AttributesContainer>
+                              {x.items.map(x =>
+                                <Span color={x.value} key={Math.random() * 10_0000}></Span>)
+                              }
+                            </AttributesContainer>
+                          </div>
+                        )
+                      )
+                      :
+                      (
+                        (<div key={Math.random() * 10_0000}>
+                            <Attributes>{x.name}:</Attributes>
+                            <AttributesContainer>{x.items.map(x => <Span
+                              key={Math.random() * 10_0000}> {x.value}</Span>)}</AttributesContainer>
+                          </div>
+                        )
                       )
                     )
-                    :
-                    (
-                      (<div key={Math.random() * 10_0000}>
-                          <Attributes>{x.name}:</Attributes>
-                          <AttributesContainer>{x.items.map(x => <Span
-                            key={Math.random() * 10_0000}> {x.value}</Span>)}</AttributesContainer>
-                        </div>
-                      )
-                    )
-                  )
-                  }
+                    }
 
 
-                </Description>
-                <Price>price:</Price>
-                <Currency>{product.prices[0].amount}</Currency>
-                <ToCartButton>add to cart</ToCartButton>
-                <Description>{product.description}</Description>
-              </DescriptionContainer>
-            </Div>
-          </Container>)
+                  </Description>
+                  <Price>price:</Price>
+                  <Currency>{product.prices[0].amount}</Currency>
+                  <ToCartButton onClick={() => this.props.addToCart(product)}>add to cart</ToCartButton>
+                  <Description>{product.description}</Description>
+                </DescriptionContainer>
+              </Div>
+            </Container>
+          </>)
       }
     </>);
   }
@@ -109,6 +116,7 @@ class ProductScreen extends Component {
 
 export default connect((state) => ({
     products: state.products.items,
+    cartItems: state.cart.cartItems,
   }),
-  {fetchProducts}
+  {fetchProducts, addToCart}
 )(ProductScreen);

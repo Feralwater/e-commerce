@@ -24,7 +24,7 @@ class Products extends Component {
               <Ul>
                 {this.props.products.map(product => (
                   <Li inStock={product.inStock} key={product.name}>
-                    <A  to={"products/" + product.name}>
+                    <A to={"products/" + product.name}>
                       <span>out of stock</span>
                       <ImgContainer>
                         <Img src={product.gallery[0]} alt={product.title}/>
@@ -33,7 +33,7 @@ class Products extends Component {
                         {product.name}
                       </ProductName>
                       <Currency>
-                        {formatCurrency(product.prices[0].amount)}
+                        {formatCurrency(product.prices, this.props.currency)}
                       </Currency>
                     </A>
                     <div>
@@ -64,5 +64,8 @@ class Products extends Component {
   }
 }
 
-export default connect((state) => ({products: state.products.items}), {fetchProducts, addToCart})(Products);
+export default connect((state) => ({
+  products: state.products.items,
+  currency: state.currency.currency,
+}), {fetchProducts, addToCart})(Products);
 

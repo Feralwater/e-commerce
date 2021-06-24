@@ -28,7 +28,7 @@ class ProductInCart extends Component {
               <ProductDescription>
                 <ProductName>{item.name}</ProductName>
                 <ProductPrice>
-                  {formatCurrency(item.prices[0].amount)}
+                  {formatCurrency(item.prices, this.props.currency)}
                 </ProductPrice>
                 <div>size</div>
               </ProductDescription>
@@ -58,6 +58,7 @@ class ProductInCart extends Component {
 
 export default connect((state) => ({
     cartItems: state.cart.cartItems,
+    currency: state.currency.currency,
   }),
   {removeFromCart, counterDecrement, addToCart}
 )(ProductInCart);

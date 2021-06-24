@@ -3,6 +3,7 @@ import './fonts/fonts.css'
 import {Redirect, Route, Switch} from "react-router-dom";
 import ProductScreen from "./components/screens/ProductScreen";
 import HomeScreen from "./components/screens/HomeScreen";
+import Cart from "./components/cart/Cart";
 
 
 class App extends Component {
@@ -14,7 +15,7 @@ class App extends Component {
       <Switch>
         <Route exact path="/" component={HomeScreen}/>
         <Route path="/products/:name" component={ProductScreen}/>
-        {/*<Route path="/error" component={EmptyState}/>*/}
+        <Route path="/cart" component={Cart}/>
         <Redirect to='/'/>
       </Switch>
     );

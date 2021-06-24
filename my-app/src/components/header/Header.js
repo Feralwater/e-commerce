@@ -1,8 +1,15 @@
 import React, {Component} from 'react';
 import Navbar from "../navbar/Navbar";
-import {CartItemsTotal, CurrencyCart, HeaderContainer} from "../../styleComponents/HeaderStyles";
+import {
+  CartItemsTotal,
+  Currency,
+  CurrencyCart,
+  CurrencyList,
+  HeaderContainer
+} from "../../styleComponents/HeaderStyles";
 import ModalCart from "../cart/ModalCart";
 import {connect} from "react-redux";
+import {changeCurrency} from "../../actions/currencyAction";
 
 
 class Header extends Component {
@@ -11,6 +18,7 @@ class Header extends Component {
     super();
     this.state = {
       modalActive: false,
+      currencyActive: false,
     }
   }
 
@@ -19,8 +27,14 @@ class Header extends Component {
       modalActive: boolean,
     })
   }
+  setCurrencyActive = (boolean) => {
+    this.setState({
+      currencyActive: boolean,
+    })
+  }
 
   render() {
+
     return (
       <div>
         <HeaderContainer>
@@ -52,15 +66,14 @@ class Header extends Component {
             </defs>
           </svg>
           <CurrencyCart>
-            <div>
-              <select name="" id="" value={''} onChange={() => {
-              }}>
-                <option value="">$ USD</option>
-                <option value="€ EUR">€ EUR</option>
-                <option value="JPY">¥ JPY</option>
-              </select>
-            </div>
-
+            <Currency active={this.state.currencyActive} onClick={() => this.setCurrencyActive(!this.state.currencyActive)}>{this.props.icon}</Currency>
+            <CurrencyList active={this.state.currencyActive}>
+              <li onClick={() => this.props.changeCurrency('USD')}>$ USD</li>
+              <li onClick={() => this.props.changeCurrency('GBP')}>£ GBP</li>
+              <li onClick={() => this.props.changeCurrency('AUD')}>$ AUD</li>
+              <li onClick={() => this.props.changeCurrency('JPY')}>¥ JPY</li>
+              <li onClick={() => this.props.changeCurrency('RUB')}>₽ RUB</li>
+            </CurrencyList>
             <button onClick={() => {
               this.setModalActive(true)
             }}>
@@ -94,6 +107,9 @@ class Header extends Component {
 
 export default connect((state) => ({
     cartItems: state.cart.cartItems,
+    currency: state.currency.currency,
+    icon: state.currency.icon,
+    products: state.products.items,
   }),
-  null
+  {changeCurrency}
 )(Header);

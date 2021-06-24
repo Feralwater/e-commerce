@@ -5,11 +5,11 @@ import {
   CheckButton,
   Content,
   ContentContainer,
-  Modal, Title,
+  Modal,
+  Title,
   Total,
   ViewButton
 } from "../../styleComponents/ModalCartStyle";
-import formatCurrency from "../../utils/formatCurrency";
 import ProductInCart from "../products/ProductInCart";
 import {connect} from "react-redux";
 import {removeFromCart} from "../../actions/cartActions";
@@ -19,6 +19,7 @@ class ModalCart extends Component {
 
   render() {
     const {cartItems, active, setModalActive} = this.props;
+
     return (
       <Modal active={active} onClick={() => setModalActive(false)}>
         <ContentContainer onClick={(e) => e.stopPropagation()}>
@@ -29,7 +30,7 @@ class ModalCart extends Component {
               <Total>
                 <p>Total</p>
                 <p>
-                  {formatCurrency(cartItems.reduce((x, y) => x + (y.prices[0].amount * y.count), 0))}
+                  {/*{cartItems.reduce((x, y) => x + (y.prices[y.prices.indexOf("RUB")].amount * y.count), 0)}*/}
                 </p>
               </Total>
               <Buttons>
@@ -46,6 +47,7 @@ class ModalCart extends Component {
 
 export default connect((state) => ({
     cartItems: state.cart.cartItems,
+    currency: state.currency.currency,
   }),
   {removeFromCart}
 )(ModalCart);

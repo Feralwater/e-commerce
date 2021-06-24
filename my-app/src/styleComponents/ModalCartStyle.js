@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import {NavLink as Link} from 'react-router-dom';
+import {A, Currency, Img, ImgContainer, ProductName} from "./ProductsStyle";
+import formatCurrency from "../utils/formatCurrency";
+import React from "react";
 
 export const Modal = styled.div`
   background: rgba(57, 55, 72, 0.22);

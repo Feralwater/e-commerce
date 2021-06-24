@@ -19,6 +19,7 @@ import {connect} from "react-redux";
 import {Container} from "../../styleComponents/HomeStyles";
 import Header from "../header/Header";
 import {addToCart} from "../../actions/cartActions";
+import formatCurrency from "../../utils/formatCurrency";
 
 class ProductScreen extends Component {
   constructor() {
@@ -101,9 +102,9 @@ class ProductScreen extends Component {
 
                   </Description>
                   <Price>price:</Price>
-                  <Currency>{product.prices[0].amount}</Currency>
+                  <Currency>{formatCurrency(product.prices,"RUB")}</Currency>
                   <ToCartButton onClick={() => this.props.addToCart(product)}>add to cart</ToCartButton>
-                  <Description>{product.description}</Description>
+                  <Description>{<div dangerouslySetInnerHTML={{__html: product.description}}></div>}</Description>
                 </DescriptionContainer>
               </Div>
             </Container>

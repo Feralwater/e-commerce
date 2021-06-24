@@ -66,13 +66,39 @@ class Header extends Component {
             </defs>
           </svg>
           <CurrencyCart>
-            <Currency active={this.state.currencyActive} onClick={() => this.setCurrencyActive(!this.state.currencyActive)}>{this.props.icon}</Currency>
+            <Currency active={this.state.currencyActive}
+                      onClick={() => this.setCurrencyActive(!this.state.currencyActive)}>{this.props.icon}</Currency>
             <CurrencyList active={this.state.currencyActive}>
-              <li onClick={() => this.props.changeCurrency('USD')}>$ USD</li>
-              <li onClick={() => this.props.changeCurrency('GBP')}>£ GBP</li>
-              <li onClick={() => this.props.changeCurrency('AUD')}>$ AUD</li>
-              <li onClick={() => this.props.changeCurrency('JPY')}>¥ JPY</li>
-              <li onClick={() => this.props.changeCurrency('RUB')}>₽ RUB</li>
+              <li onClick={() => {
+                this.props.changeCurrency('USD');
+                this.setCurrencyActive(!this.state.currencyActive);
+              }
+              }>$ USD
+              </li>
+              <li onClick={() => {
+                this.props.changeCurrency('GBP');
+                this.setCurrencyActive(!this.state.currencyActive);
+              }
+              }>£ GBP
+              </li>
+              <li onClick={() => {
+                this.props.changeCurrency('AUD');
+                this.setCurrencyActive(!this.state.currencyActive);
+              }
+              }>$ AUD
+              </li>
+              <li onClick={() => {
+                this.props.changeCurrency('JPY');
+                this.setCurrencyActive(!this.state.currencyActive);
+              }
+              }>¥ JPY
+              </li>
+              <li onClick={() => {
+                this.props.changeCurrency('RUB');
+                this.setCurrencyActive(!this.state.currencyActive);
+              }
+              }>₽ RUB
+              </li>
             </CurrencyList>
             <button onClick={() => {
               this.setModalActive(true)

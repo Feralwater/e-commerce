@@ -11,11 +11,6 @@ export const CartTitle = styled.div`
   color: #1D1F22;
 `;
 export const CardContainer = styled.li`
-  display: flex;
-  border-top: 1px solid #E5E5E5;
-  justify-content: space-between;
-  color: #1D1F22;
-  padding: 2rem 0;
   opacity: ${props => props.inStock ? '1' : '0.5'};
   pointer-events: ${props => props.inStock ? 'all' : 'none'};
 `;
@@ -125,6 +120,6 @@ export const Slider = styled.img`
 
 `;
 export const Carousel = styled.div`
-  opacity: ${props => props.index === props.current ? '1' : '0.8'};
-  transition: .5s ease-out;
+  // opacity: ${props => props.index === props.current ? '1' : '0.8'};
+  // transition: .5s ease-out;
 `;

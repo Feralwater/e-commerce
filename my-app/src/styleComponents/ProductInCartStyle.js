@@ -87,3 +87,19 @@ export const CounterImageContainer = styled.div`
   width: 14rem;
 `;
 
+export const Span = styled.span`
+  display: flex;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid #1D1F22;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 1rem 0 0;
+  cursor: pointer;
+  font-family: Source Sans Pro, sans-serif;
+  font-size: 1.4rem;
+  line-height: 160%;
+  color: #292929;
+  background-color: ${props => props.color ? `${props.color}` : '#ffffff'};
+`;

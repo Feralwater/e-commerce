@@ -9,11 +9,13 @@ import {
   ProductDescription,
   ProductName,
   ProductPrice,
-  RemoveButton,
+  RemoveButton, Span,
   Ul
 } from "../../styleComponents/ProductInCartStyle";
 import {connect} from "react-redux";
 import {addToCart, counterDecrement, removeFromCart} from "../../actions/cartActions";
+import {Attributes, AttributesContainer} from "../../styleComponents/ProductScreenStyles";
+import {Features} from "../../styleComponents/CartStyle";
 
 class ProductInCart extends Component {
 
@@ -30,7 +32,31 @@ class ProductInCart extends Component {
                 <ProductPrice>
                   {formatCurrency(item.prices, this.props.currency)}
                 </ProductPrice>
-                <div>size</div>
+
+                <Features>
+                  {item.attributes.map(x => x.type === 'swatch' ?
+                    (
+                      (<div key={Math.random() * 10_0000}>
+                          <AttributesContainer>
+                            {x.items.map(x =>
+                              <Span color={x.value} key={Math.random() * 10_0000}></Span>)
+                            }
+                          </AttributesContainer>
+                        </div>
+                      )
+                    )
+                    :
+                    (
+                      (<div key={Math.random() * 10_0000}>
+                          <AttributesContainer>{x.items.map(x => <Span
+                            key={Math.random() * 10_0000}> {x.value}</Span>)}</AttributesContainer>
+                        </div>
+                      )
+                    )
+                  )
+                  }
+                </Features>
+
               </ProductDescription>
 
               <CounterImageContainer>

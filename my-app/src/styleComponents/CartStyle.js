@@ -72,4 +72,59 @@ export const Features = styled.div`
 `;
 export const CartImg = styled.div`
   width: 14.1rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const PrevArrow = styled.span`
+  position: absolute;
+  top: 50%;
+  left: .9rem;
+
+  &:after {
+    border-style: solid;
+    border-width: 0.2rem 0 0 0.2rem;
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    transform: rotate(-45deg);
+    margin: 0;
+    padding: .4rem;
+    cursor: pointer;
+    color: #ffffff;
+    z-index: 10;
+    user-select: none;
+  }
+`;
+export const NextArrow = styled.span`
+  position: absolute;
+  top: 50%;
+  right: .9rem;
+
+  &:after {
+    border-style: solid;
+    border-width: 0 0.2rem 0.2rem 0;
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    transform: rotate(-45deg);
+    margin: 0;
+    padding: .4rem;
+    cursor: pointer;
+    color: #ffffff;
+    z-index: 10;
+    user-select: none;
+  }
+`;
+export const Slider = styled.img`
+  //height: 100%;
+  width: 100%;
+  object-fit: cover;
+
+`;
+export const Carousel = styled.div`
+  opacity: ${props => props.index === props.current ? '1' : '0.8'};
+  transition: .5s ease-out;
 `;

@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import Header from "../header/Header";
-import {addToCart, counterDecrement, removeFromCart} from "../../actions/cartActions";
-import {connect} from "react-redux";
 import {Container} from "../../styleComponents/HomeStyles";
 import {
   CardContainer,
+  Carousel,
   CartImg,
   CartTitle,
   CounterContainer,
@@ -12,14 +11,38 @@ import {
   ItemDescription,
   ItemName,
   ItemPrice,
+  NextArrow,
+  PrevArrow,
   RightElementsContainer,
+  Slider,
   Wrapper
 } from "../../styleComponents/CartStyle";
-import {Img, ProductDescription, RemoveButton, Ul} from "../../styleComponents/ProductInCartStyle";
+import {ProductDescription, RemoveButton, Ul} from "../../styleComponents/ProductInCartStyle";
 import formatCurrency from "../../utils/formatCurrency";
 import {Attributes, AttributesContainer, Span} from "../../styleComponents/ProductScreenStyles";
+import {connect} from "react-redux";
+import {addToCart, counterDecrement, removeFromCart} from "../../actions/cartActions";
 
 class Cart extends Component {
+  constructor() {
+    super();
+    this.state = {
+      current: 0,
+    }
+  }
+
+  nextSlide = (length, current) => {
+    this.setState({
+      current: current === length - 1 ? 0 : current + 1
+    })
+  }
+
+  prevSlide = (length, current) => {
+    this.setState({
+      current: current === 0 ? length - 1 : current - 1,
+    })
+  }
+
 
   render() {
     const {cartItems} = this.props;
@@ -81,9 +104,29 @@ class Cart extends Component {
                           <p onClick={() => this.props.counterDecrement(item)}>-</p>
                         </CounterContainer>
 
-                        <CartImg>
-                          <Img src={item.gallery[0]} alt={item.name}/>
-                        </CartImg>
+                        {!Array.isArray(item.gallery) || item.gallery.length <= 0 ?
+
+                          <img src="https://acoustic-atm.ru/userfiles/default_images/default.jpg" alt=""/>
+                          :
+                          <CartImg>
+                            {/*<Img src={item.gallery[0]} alt={item.name}/>*/}
+
+                            <PrevArrow
+                              onClick={() => this.prevSlide(item.gallery.length, this.state.current)}></PrevArrow>
+                            <NextArrow
+                              onClick={() => this.nextSlide(item.gallery.length, this.state.current)}></NextArrow>
+                            {item.gallery.map((slide, index) => {
+                              return (
+                                <Carousel index={index} current={this.state.current}>
+                                  {index === this.state.current && (<Slider src={slide} alt={item.name}/>)}
+                                </Carousel>)
+
+
+                            })}
+
+                          </CartImg>
+                        }
+
 
                       </RightElementsContainer>
                       <RemoveButton onClick={() => this.props.removeFromCart(item)}>x</RemoveButton>

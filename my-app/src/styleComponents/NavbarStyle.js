@@ -14,17 +14,14 @@ export const NavLink = styled(Link)`
   font-size: 1.6rem;
   line-height: 120%;
   text-transform: uppercase;
-  color: #1D1F22;
+  //color: #1D1F22;
+  //color: ${props => props.activeCategory  ? '#1D1F22' : '#5ECE7B' };
   margin: 0 3rem 0 0;
   cursor: pointer;
   text-decoration: none;
 
-  &:hover {
-    color: #5ECE7B;
-    text-decoration: underline;
-  }
-
-  @media screen and (max-width: 40rem) {
-
-  }
+  //&:hover {
+  //  color: #5ECE7B;
+  //  text-decoration: underline;
+  //}
 `;

@@ -5,7 +5,6 @@ export const Ul = styled.ul`
   display: flex;
   align-items: center;
   padding: 0;
-  margin: 23.5rem 0 0 0;
   list-style-type: none;
   flex-wrap: wrap;
 `;
@@ -78,4 +77,14 @@ export const Currency = styled.div`
   line-height: 160%;
   color: #1D1F22;
   margin: .5rem 0;
+`;
+export const Category = styled.div`
+  margin: 23.5rem 0 0 0;
+  font-size: 4.2rem;
+  line-height: 160%;
+  color: #1D1F22;
+
+  &:first-letter {
+    text-transform: uppercase;
+  }
 `;

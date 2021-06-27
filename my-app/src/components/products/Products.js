@@ -2,8 +2,19 @@ import React, {Component} from 'react';
 import formatCurrency from "../../utils/formatCurrency";
 import {connect} from "react-redux";
 import {fetchProducts} from "../../actions/productActions";
-import {A, CartButton, Currency, Img, ImgContainer, Li, ProductName, Ul} from "../../styleComponents/ProductsStyle";
+import {
+  A,
+  CartButton,
+  Category,
+  Currency,
+  Img,
+  ImgContainer,
+  Li,
+  ProductName,
+  Ul
+} from "../../styleComponents/ProductsStyle";
 import {addToCart} from "../../actions/cartActions";
+
 
 class Products extends Component {
 
@@ -15,14 +26,14 @@ class Products extends Component {
   render() {
     return (
       <div>
-
+        <Category>{this.props.category}</Category>
         {
-          !this.props.products ?
+          !this.props.filteredProducts ?
             (<div>Loading...</div>)
             :
             (
               <Ul>
-                {this.props.products.map(product => (
+                {this.props.filteredProducts.map(product => (
                   <Li inStock={product.inStock} key={product.name}>
                     <A to={"products/" + product.name}>
                       <span>out of stock</span>
@@ -67,5 +78,7 @@ class Products extends Component {
 export default connect((state) => ({
   products: state.products.items,
   currency: state.currency.currency,
+  category: state.category.category,
+  filteredProducts: state.products.filteredItems,
 }), {fetchProducts, addToCart})(Products);
 

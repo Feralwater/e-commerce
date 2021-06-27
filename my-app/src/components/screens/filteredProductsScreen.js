@@ -1,0 +1,35 @@
+import React, {Component} from 'react';
+import {connect} from "react-redux";
+import Header from "../header/Header";
+import {filterProducts} from "../../actions/productActions";
+import {Container} from "../../styleComponents/HomeStyles";
+import Products from "../products/Products";
+
+class FilteredProductsScreen extends Component {
+
+  render() {
+    return (
+      <div>
+        <Container>
+          <Header/>
+          {
+            !this.props.filteredProducts ?
+              <div>Loading...</div>
+              :
+              (
+                <Products/>
+              )
+          }
+        </Container>
+      </div>
+    );
+  }
+}
+
+export default connect((state) => ({
+    products: state.products.items,
+    category: state.category.category,
+    filteredProducts: state.products.filteredItems,
+  }),
+  {filterProducts}
+)(FilteredProductsScreen);

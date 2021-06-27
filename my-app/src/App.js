@@ -15,6 +15,7 @@ class App extends Component {
     return (
       <Switch>
         <Route exact path="/" component={HomeScreen}/>
+        <Route path="/categories/:categoryName/products/:name" component={ProductScreen}/>
         <Route path="/products/:name" component={ProductScreen}/>
         <Route path="/cart" component={Cart}/>
         <Route path="/categories/:categoryName" component={FilteredProductsScreen}/>

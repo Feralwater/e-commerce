@@ -14,14 +14,8 @@ export const NavLink = styled(Link)`
   font-size: 1.6rem;
   line-height: 120%;
   text-transform: uppercase;
-  //color: #1D1F22;
-  //color: ${props => props.activeCategory  ? '#1D1F22' : '#5ECE7B' };
+  text-decoration: ${props => props.active === props.item ? 'underline' : 'none'};
+  color: ${props => props.active === props.item ? '#5ECE7B' : '#1D1F22'};
   margin: 0 3rem 0 0;
   cursor: pointer;
-  text-decoration: none;
-
-  //&:hover {
-  //  color: #5ECE7B;
-  //  text-decoration: underline;
-  //}
 `;

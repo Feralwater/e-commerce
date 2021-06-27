@@ -39,13 +39,3 @@ export const fetchProducts = () => async (dispatch) => {
   })
 }
 
-export const filterProducts = (products, category) => (dispatch) => {
-  dispatch({
-    type: FILTER_PRODUCTS,
-    payload: {
-      category: category,
-      items: category === "" ? products
-        : products.filter(x => x.category === category)
-    }
-  })
-}

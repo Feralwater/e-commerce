@@ -14,6 +14,8 @@ import {
   Ul
 } from "../../styleComponents/ProductsStyle";
 import {addToCart} from "../../actions/cartActions";
+import {compose} from "redux";
+import {withRouter} from "react-router-dom";
 
 
 class Products extends Component {
@@ -22,20 +24,23 @@ class Products extends Component {
     this.props.fetchProducts()
   }
 
+  filter = (item) => {
+    return item.category === this.props.activeCategory || !this.props.activeCategory ? 1 : 0;
+  }
 
   render() {
     return (
       <div>
-        <Category>{this.props.category}</Category>
+        <Category>{this.props.activeCategory || 'all'}</Category>
         {
-          !this.props.filteredProducts ?
+          !this.props.products ?
             (<div>Loading...</div>)
             :
             (
               <Ul>
-                {this.props.filteredProducts.map(product => (
+                {this.props.products.filter(this.filter).map(product => (
                   <Li inStock={product.inStock} key={product.name}>
-                    <A to={"products/" + product.name}>
+                    <A to={`/categories/${this.props.category}/products/${product.name}`}>
                       <span>out of stock</span>
                       <ImgContainer>
                         <Img src={product.gallery[0]} alt={product.title}/>
@@ -75,10 +80,12 @@ class Products extends Component {
   }
 }
 
-export default connect((state) => ({
-  products: state.products.items,
-  currency: state.currency.currency,
-  category: state.category.category,
-  filteredProducts: state.products.filteredItems,
-}), {fetchProducts, addToCart})(Products);
+export default compose(
+  withRouter,
+  connect((state, ownProps) => ({
+    products: state.products.items,
+    currency: state.currency.currency,
+    activeCategory: ownProps?.match?.params?.categoryName,
+  }), {fetchProducts, addToCart}))(Products);
+
 

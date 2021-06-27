@@ -44,7 +44,7 @@ class Card extends Component {
           <ItemName>{this.props.item.name}</ItemName>
           <ItemDescription>description???</ItemDescription>
           <ItemPrice>
-            {formatCurrency(this.props.item.prices, this.props.currency)}
+            {/*{formatCurrency(this.props.item.prices, this.props.currency)}*/}
           </ItemPrice>
 
           <Features>

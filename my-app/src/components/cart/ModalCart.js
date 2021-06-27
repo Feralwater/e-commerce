@@ -30,7 +30,11 @@ class ModalCart extends Component {
               <Total>
                 <p>Total</p>
                 <p>
-                  {/*{cartItems.reduce((x, y) => x + (y.prices[y.prices.indexOf("RUB")].amount * y.count), 0)}*/}
+                  {this.props.currency.icon + cartItems.reduce((accum, item) => {
+                    const amount = item.prices.find(cur => cur.currency === this.props.currency.currency).amount
+                    const count = item.count
+                    return Number((accum + amount * count).toFixed(2))
+                  }, 0)}
                 </p>
               </Total>
               <Buttons>
@@ -47,7 +51,7 @@ class ModalCart extends Component {
 
 export default connect((state) => ({
     cartItems: state.cart.cartItems,
-    currency: state.currency.currency,
+    currency: state.currency,
   }),
   {removeFromCart}
 )(ModalCart);

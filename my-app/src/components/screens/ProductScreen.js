@@ -102,7 +102,7 @@ class ProductScreen extends Component {
 
                   </Description>
                   <Price>price:</Price>
-                  <Currency>{formatCurrency(product.prices,"RUB")}</Currency>
+                  {/*<Currency>{formatCurrency(product.prices,"RUB")}</Currency>*/}
                   <ToCartButton onClick={() => this.props.addToCart(product)}>add to cart</ToCartButton>
                   <Description>{<div dangerouslySetInnerHTML={{__html: product.description}}></div>}</Description>
                 </DescriptionContainer>

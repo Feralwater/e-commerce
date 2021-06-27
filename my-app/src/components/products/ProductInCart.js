@@ -9,12 +9,13 @@ import {
   ProductDescription,
   ProductName,
   ProductPrice,
-  RemoveButton, Span,
+  RemoveButton,
+  Span,
   Ul
 } from "../../styleComponents/ProductInCartStyle";
 import {connect} from "react-redux";
 import {addToCart, counterDecrement, removeFromCart} from "../../actions/cartActions";
-import {Attributes, AttributesContainer} from "../../styleComponents/ProductScreenStyles";
+import {AttributesContainer} from "../../styleComponents/ProductScreenStyles";
 import {Features} from "../../styleComponents/CartStyle";
 
 class ProductInCart extends Component {
@@ -30,7 +31,7 @@ class ProductInCart extends Component {
               <ProductDescription>
                 <ProductName>{item.name}</ProductName>
                 <ProductPrice>
-                  {formatCurrency(item.prices, this.props.currency)}
+                  {formatCurrency(item.prices, this.props.currency).icon+formatCurrency(item.prices, this.props.currency).price}
                 </ProductPrice>
 
                 <Features>

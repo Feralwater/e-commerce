@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import {NavLink as Link} from 'react-router-dom';
-import {A, Currency, Img, ImgContainer, ProductName} from "./ProductsStyle";
-import formatCurrency from "../utils/formatCurrency";
 import React from "react";
 
 export const Modal = styled.div`
@@ -11,8 +9,8 @@ export const Modal = styled.div`
   right: 0;
   left: 0;
   bottom: 0;
-  opacity: ${props => props.active ? '1' : '0'};
-  display: ${props => !props.active && 'none'};
+    //opacity: ${props => props.active ? '1' : '0'};
+    display: ${props => !props.active && 'none'};
   transition: .5s;
   pointer-events: all;
 `;
@@ -22,24 +20,25 @@ export const ContentContainer = styled.div`
   position: relative;
   max-width: 1316px;
   margin: 0 auto;
- 
 `;
 export const Content = styled.div`
-  padding: .8rem 1.5rem 2rem 1.3rem;
+  padding: .8rem 1.6rem 2rem 1.3rem;
   background-color: #ffffff;
-  width: 29.7rem;
-  height: 54rem;
+  width: 31.6rem;
+  height: 51.2rem;
   position: absolute;
   top: 0;
-  right: 0;
+  right: 2.5rem;
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 `;
 
 export const ViewButton = styled(Link)`
+  width: 14rem;
   display: inline-block;
-  padding: 1.3rem 3rem;
+  padding: 1.3rem 0;
   background: #FFFFFF;
   border: 1px solid #1D1F22;
   text-transform: uppercase;
@@ -48,9 +47,11 @@ export const ViewButton = styled(Link)`
   font-size: 1.4rem;
   line-height: 120%;
   text-decoration: none;
+  text-align: center;
 `;
 
 export const CheckButton = styled(Link)`
+  width: 14rem;
   font-weight: 600;
   font-size: 1.4rem;
   line-height: 120%;
@@ -60,7 +61,8 @@ export const CheckButton = styled(Link)`
   text-decoration: none;
   display: inline-block;
   background: #5ECE7B;
-  padding: 1.4rem 3rem;
+  padding: 1.4rem 0;
+  text-align: center;
 `;
 
 export const Buttons = styled.div`
@@ -70,19 +72,26 @@ export const Buttons = styled.div`
 export const Total = styled.div`
   display: flex;
   justify-content: space-between;
-  //font-family: Roboto, sans-serif;
-  font-weight: 600;
   font-size: 1.6rem;
   color: #1D1F22;
+  font-weight: 700;
+    margin-bottom: 2rem;
 `;
+export const TotalTitle = styled.p`
+  font-family: 'Roboto', sans-serif;
+`;
+
 export const CartBottomWrapper = styled.div`
   margin-top: auto;
+  justify-content: space-between;
 `;
 export const Title = styled.div`
   font-size: 1.6rem;
   line-height: 160%;
   color: #1D1F22;
-  & span{
+  margin-bottom: 1.5rem;
+
+  & span {
     font-weight: 600;
   }
 `;

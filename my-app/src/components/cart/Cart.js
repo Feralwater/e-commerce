@@ -45,6 +45,6 @@ export default connect((state) => ({
     cartItems: state.cart.cartItems,
     currency: state.currency.currency,
   }),
-  {removeFromCart, counterDecrement, addToCart}
+  { counterDecrement, addToCart}
 )(Cart);
 

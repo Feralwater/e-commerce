@@ -16,7 +16,9 @@ class Navbar extends Component {
       <>
         <Nav>
           <NavLink to='/' active={this.props.activeCategory}>all</NavLink>
-          {categories.map(item => <NavLink to={'/categories/' + item} item={item}
+          {categories.map(item => <NavLink to={'/categories/' + item}
+                                           key={Math.random() * 10_0000}
+                                           item={item}
                                            active={this.props.activeCategory}>{item}</NavLink>)}
         </Nav>
       </>

@@ -102,7 +102,8 @@ class ProductScreen extends Component {
 
                   </Description>
                   <Price>price:</Price>
-                  {/*<Currency>{formatCurrency(product.prices,"RUB")}</Currency>*/}
+
+                  <Currency> {formatCurrency(product.prices, this.props.currency).icon+formatCurrency(product.prices, this.props.currency).price}</Currency>
                   <ToCartButton onClick={() => this.props.addToCart(product)}>add to cart</ToCartButton>
                   <Description>{<div dangerouslySetInnerHTML={{__html: product.description}}></div>}</Description>
                 </DescriptionContainer>
@@ -118,6 +119,7 @@ class ProductScreen extends Component {
 export default connect((state) => ({
     products: state.products.items,
     cartItems: state.cart.cartItems,
+    currency: state.currency.currency,
   }),
   {fetchProducts, addToCart}
 )(ProductScreen);

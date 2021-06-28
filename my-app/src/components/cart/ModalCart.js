@@ -7,12 +7,12 @@ import {
   ContentContainer,
   Modal,
   Title,
-  Total,
+  Total, TotalTitle,
   ViewButton
 } from "../../styleComponents/ModalCartStyle";
 import ProductInCart from "../products/ProductInCart";
 import {connect} from "react-redux";
-import {removeFromCart} from "../../actions/cartActions";
+
 
 
 class ModalCart extends Component {
@@ -28,7 +28,7 @@ class ModalCart extends Component {
             <ProductInCart cartItems={cartItems}/>
             <CartBottomWrapper>
               <Total>
-                <p>Total</p>
+                <TotalTitle>Total</TotalTitle>
                 <p>
                   {this.props.currency.icon + cartItems.reduce((accum, item) => {
                     const amount = item.prices.find(cur => cur.currency === this.props.currency.currency).amount
@@ -53,5 +53,5 @@ export default connect((state) => ({
     cartItems: state.cart.cartItems,
     currency: state.currency,
   }),
-  {removeFromCart}
+  null
 )(ModalCart);

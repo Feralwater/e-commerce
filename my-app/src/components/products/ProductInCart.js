@@ -9,12 +9,11 @@ import {
   ProductDescription,
   ProductName,
   ProductPrice,
-  RemoveButton,
   Span,
   Ul
 } from "../../styleComponents/ProductInCartStyle";
 import {connect} from "react-redux";
-import {addToCart, counterDecrement, removeFromCart} from "../../actions/cartActions";
+import {addToCart, counterDecrement} from "../../actions/cartActions";
 import {AttributesContainer} from "../../styleComponents/ProductScreenStyles";
 import {Features} from "../../styleComponents/CartStyle";
 
@@ -30,8 +29,9 @@ class ProductInCart extends Component {
             <Li inStock={item.inStock} key={item.name}>
               <ProductDescription>
                 <ProductName>{item.name}</ProductName>
+                <ProductName>description</ProductName>
                 <ProductPrice>
-                  {formatCurrency(item.prices, this.props.currency).icon+formatCurrency(item.prices, this.props.currency).price}
+                  {formatCurrency(item.prices, this.props.currency).icon + formatCurrency(item.prices, this.props.currency).price}
                 </ProductPrice>
 
                 <Features>
@@ -50,7 +50,8 @@ class ProductInCart extends Component {
                     (
                       (<div key={Math.random() * 10_0000}>
                           <AttributesContainer>{x.items.map(x => <Span
-                            key={Math.random() * 10_0000}> {x.value}</Span>)}</AttributesContainer>
+                            key={Math.random() * 10_0000}> {x.value}</Span>)}
+                          </AttributesContainer>
                         </div>
                       )
                     )
@@ -73,7 +74,6 @@ class ProductInCart extends Component {
                 </CartImage>
 
               </CounterImageContainer>
-              <RemoveButton onClick={() => this.props.removeFromCart(item)}>x</RemoveButton>
             </Li>
           ))}
         </Ul>
@@ -87,5 +87,5 @@ export default connect((state) => ({
     cartItems: state.cart.cartItems,
     currency: state.currency.currency,
   }),
-  {removeFromCart, counterDecrement, addToCart}
+  {counterDecrement, addToCart}
 )(ProductInCart);

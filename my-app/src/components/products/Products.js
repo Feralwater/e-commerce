@@ -49,7 +49,7 @@ class Products extends Component {
                         {product.name}
                       </ProductName>
                       <Currency>
-                        {/*{formatCurrency(product.prices, this.props.currency)}*/}
+                        {formatCurrency(product.prices, this.props.currency).icon+formatCurrency(product.prices, this.props.currency).price}
                       </Currency>
                     </A>
                     <div>

@@ -2,9 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   height: 100%;
-  //justify-content: center;
-  max-width: 1316px;
-  //flex-wrap: wrap;
+  max-width: 1238px;
   margin: 0 auto;
   padding: 0 1.5rem;
   position: relative;

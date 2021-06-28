@@ -11,14 +11,17 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
   height: 8rem;
   z-index: 1000;
-  max-width: 1316px;
+  max-width: 1238px;
   margin: 0 auto;
+  padding: 0 1.5rem;
 `;
 export const CurrencyCart = styled.div`
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
   position: relative;
+  flex: 0 1 50%;
+  justify-content: flex-end;
 `;
 export const CartItemsTotal = styled.div`
   position: absolute;
@@ -27,16 +30,14 @@ export const CartItemsTotal = styled.div`
   background: #1D1F22;
   border-radius: 100%;
   color: #ffffff;
-  //font-family: Roboto;
-  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
   font-size: 1.4rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-transform: uppercase;
   width: 2rem;
   height: 2rem;
-  //padding: 0 0 .1rem 0;
 `;
 export const CurrencyList = styled.ul`
   display: ${props => !props.active && 'none'};
@@ -51,16 +52,23 @@ export const CurrencyList = styled.ul`
   background: #FFFFFF;
   box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
   position: absolute;
-  top: 3rem;
-  right: -2rem;
+  top: 4rem;
+  right: -4.4rem;
   overflow: auto;
 
   & li {
-    padding: 1rem 2.5rem;
+    padding: 2rem 2rem 0 2rem;
     cursor: pointer;
+
+    &:last-child {
+      padding-bottom: 2rem;
+    }
   }
 `;
 export const Currency = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 500;
   font-size: 1.8rem;
   line-height: 160%;
@@ -73,10 +81,16 @@ export const Currency = styled.div`
     border-width: 0.1rem 0.1rem 0 0;
     content: '';
     display: inline-block;
-    height: 0.6rem;
+    height: 0.4rem;
     vertical-align: middle;
-    width: 0.6rem;
+    width: 0.4rem;
     transform: ${props => props.active ? 'rotate(-45deg)' : 'rotate(135deg)'};
     margin: 0 0 0 1rem;
   }
+`;
+export const NavbarContainer = styled.div`
+  flex: 0 1 50%;
+`;
+export const LogoContainer = styled.div`
+  padding-top: 1rem;
 `;

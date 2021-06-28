@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {addToCart, counterDecrement, removeFromCart} from "../../actions/cartActions";
-import {ProductDescription, RemoveButton} from "../../styleComponents/ProductInCartStyle";
+import {addToCart, counterDecrement} from "../../actions/cartActions";
+import {ProductDescription} from "../../styleComponents/ProductInCartStyle";
 import {
   Carousel,
   CartImg,
@@ -9,8 +9,11 @@ import {
   Features,
   ItemDescription,
   ItemName,
-  ItemPrice, NextArrow, PrevArrow,
-  RightElementsContainer, Slider
+  ItemPrice,
+  NextArrow,
+  PrevArrow,
+  RightElementsContainer,
+  Slider
 } from "../../styleComponents/CartStyle";
 import formatCurrency from "../../utils/formatCurrency";
 import {Attributes, AttributesContainer, Span} from "../../styleComponents/ProductScreenStyles";
@@ -44,7 +47,7 @@ class Card extends Component {
           <ItemName>{this.props.item.name}</ItemName>
           <ItemDescription>description???</ItemDescription>
           <ItemPrice>
-            {/*{formatCurrency(this.props.item.prices, this.props.currency)}*/}
+            {formatCurrency(this.props.item.prices, this.props.currency).icon + formatCurrency(this.props.item.prices, this.props.currency).price}
           </ItemPrice>
 
           <Features>
@@ -107,7 +110,6 @@ class Card extends Component {
 
 
         </RightElementsContainer>
-        <RemoveButton onClick={() => this.props.removeFromCart(this.props.item)}>x</RemoveButton>
       </CardWrapper>
     );
   }
@@ -118,5 +120,5 @@ export default connect((state) => ({
     cartItems: state.cart.cartItems,
     currency: state.currency.currency,
   }),
-  {removeFromCart, counterDecrement, addToCart}
+  {counterDecrement, addToCart}
 )(Card);

@@ -98,4 +98,5 @@ export const Span = styled.span`
 
 export const AttributesContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
 `;

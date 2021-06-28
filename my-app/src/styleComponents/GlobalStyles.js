@@ -1,9 +1,8 @@
 import {createGlobalStyle} from "styled-components";
 
-
 const GlobalStyles = createGlobalStyle`
 
-  body, #root{
+  body, #root {
     margin: 0;
     font-family: 'Raleway', sans-serif;
     height: 100vh;

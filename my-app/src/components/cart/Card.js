@@ -16,7 +16,7 @@ import {
   Slider
 } from "../../styleComponents/CartStyle";
 import formatCurrency from "../../utils/formatCurrency";
-import {Attributes, AttributesContainer, Span} from "../../styleComponents/ProductScreenStyles";
+import {AttributesContainer, Span} from "../../styleComponents/ProductScreenStyles";
 import {CardWrapper} from "../../styleComponents/CardStyle";
 
 
@@ -54,7 +54,6 @@ class Card extends Component {
             {this.props.item.attributes.map(x => x.type === 'swatch' ?
               (
                 (<div key={Math.random() * 10_0000}>
-                    <Attributes>{x.name}:</Attributes>
                     <AttributesContainer>
                       {x.items.map(x =>
                         <Span color={x.value} key={Math.random() * 10_0000}></Span>)
@@ -66,7 +65,6 @@ class Card extends Component {
               :
               (
                 (<div key={Math.random() * 10_0000}>
-                    <Attributes>{x.name}:</Attributes>
                     <AttributesContainer>{x.items.map(x => <Span
                       key={Math.random() * 10_0000}> {x.value}</Span>)}</AttributesContainer>
                   </div>
@@ -84,7 +82,7 @@ class Card extends Component {
           <CounterContainer inStock={this.props.item.inStock}>
             <p onClick={() => this.props.addToCart(this.props.item)}>+</p>
             <div>{this.props.item.count}</div>
-            <p onClick={() => this.props.counterDecrement(this.props.item)}>-</p>
+            <p onClick={() => this.props.counterDecrement(this.props.item)}>–</p>
           </CounterContainer>
 
           {!Array.isArray(this.props.item.gallery) || this.props.item.gallery.length <= 0 ?

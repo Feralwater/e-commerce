@@ -2,13 +2,16 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   margin: 14rem 0 0 0;
+  max-width: 109.7rem;
 `;
+
 export const CartTitle = styled.div`
   font-weight: 600;
   font-size: 3.2rem;
   line-height: 4rem;
   text-transform: uppercase;
   color: #1D1F22;
+  margin: 16rem 0 6rem 0;
 `;
 export const CardContainer = styled.li`
   opacity: ${props => props.inStock ? '1' : '0.5'};
@@ -23,8 +26,8 @@ export const ItemName = styled.div`
 export const ItemDescription = styled.div`
   font-weight: 300;
   font-size: 3rem;
-  line-height: 2.7rem;
-  margin: 0 0 1.6rem 0;
+  line-height: 1.5rem;
+  margin: 0 0 1.2rem 0;
 `;
 export const ItemPrice = styled.div`
   font-weight: 600;
@@ -44,11 +47,16 @@ export const CounterContainer = styled.div`
 
   & p {
     border: 1px solid #1D1F22;
-    padding: .2rem 1rem .3rem 1rem;
+    width: 4.4rem;
+    height: 4.4rem;
+    text-align: center;
     cursor: pointer;
     user-select: none;
     pointer-events: all;
     margin: 0;
+    font-size: 3.4rem;
+    font-weight: 300;
+    font-family: "Roboto", sans-serif;
   }
 
   & p:first-child {
@@ -114,7 +122,7 @@ export const NextArrow = styled.span`
   }
 `;
 export const Slider = styled.img`
-  //height: 100%;
+  height: 100%;
   width: 100%;
   object-fit: cover;
 

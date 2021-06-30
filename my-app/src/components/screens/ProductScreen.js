@@ -9,7 +9,7 @@ import {
   ImagesContainer,
   Img,
   Name,
-  Price,
+  Price, ProductDescription,
   SmallImagesContainer,
   Span,
   ToCartButton
@@ -72,7 +72,7 @@ class ProductScreen extends Component {
 
                 <DescriptionContainer>
                   <Name>{product.name}</Name>
-                  <div>???</div>
+                  <ProductDescription>description</ProductDescription>
                   <Description>
 
                     {product.attributes.map(x => x.type === 'swatch' ?

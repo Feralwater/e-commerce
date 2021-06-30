@@ -89,7 +89,7 @@ export const Span = styled.span`
   align-items: center;
   margin: 1rem 1rem 0 0;
   cursor: pointer;
-  font-family: Source Sans Pro, sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   font-size: 1.4rem;
   line-height: 160%;
   color: #292929;

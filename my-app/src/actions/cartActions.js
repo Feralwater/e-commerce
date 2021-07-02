@@ -2,14 +2,10 @@ import {ADD_TO_CART, DECREMENT_IN_CART} from "../types";
 
 export const addToCart = (product) => (dispatch, getState) => {
   const cartItems = getState().cart.cartItems.slice();
-  let alreadyExists = false;
-  cartItems.forEach(x => {
-    if (x.name === product.name) {
-      alreadyExists = true;
-      x.count++;
-    }
-  });
-  if (!alreadyExists) {
+  const cartCurrentItem = cartItems.find(x => x.name === product.name)
+  if (cartCurrentItem) {
+    cartCurrentItem.count++
+  } else {
     cartItems.push({...product, count: 1})
   }
   dispatch({

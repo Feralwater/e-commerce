@@ -1,5 +1,5 @@
 import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
-import {FETCH_PRODUCTS, FILTER_PRODUCTS} from "../types";
+import {FETCH_PRODUCTS} from "../types";
 
 const CARD_QUERY = gql`
     query {

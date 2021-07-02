@@ -91,7 +91,6 @@ export const Span = styled.span`
   display: flex;
   width: 6.1rem;
   height: 4.3rem;
-  border: 1px solid #1D1F22;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -103,6 +102,7 @@ export const Span = styled.span`
   letter-spacing: 0.05em;
   color: #292929;
   background-color: ${props => props.color ? `${props.color}` : '#ffffff'};
+  border: ${props => (props.color === props.active && props.color) || (props.value === props.active && props.value) ? '2px solid #1D1F22' : '1px solid #1D1F22'};
 `;
 
 export const AttributesContainer = styled.div`

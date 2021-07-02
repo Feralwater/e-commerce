@@ -9,24 +9,33 @@ import {
   ImagesContainer,
   Img,
   Name,
-  Price, ProductDescription,
+  Price,
+  ProductDescription,
   SmallImagesContainer,
   Span,
   ToCartButton
 } from "../../styleComponents/ProductScreenStyles";
-import {fetchProducts} from "../../actions/productActions";
-import {connect} from "react-redux";
 import {Container} from "../../styleComponents/HomeStyles";
 import Header from "../header/Header";
+import {connect} from "react-redux";
+import {fetchProducts} from "../../actions/productActions";
 import {addToCart} from "../../actions/cartActions";
 import formatCurrency from "../../utils/formatCurrency";
+
 
 class ProductScreen extends Component {
   constructor() {
     super();
     this.state = {
       imageIndex: 0,
+      attributes: {},
     }
+  }
+
+  setSelectAttribute = (attribute, name) => {
+    this.setState(
+      {...this.state, attributes: {...this.state.attributes, [name]: attribute}}
+    )
   }
 
   setSelectedImg = (index) => {
@@ -75,13 +84,19 @@ class ProductScreen extends Component {
                   <ProductDescription>description</ProductDescription>
                   <Description>
 
-                    {product.attributes.map(x => x.type === 'swatch' ?
+                    {product.attributes.map(attribute => attribute.type === 'swatch' ?
                       (
                         (<div key={Math.random() * 10_0000}>
-                            <Attributes>{x.name}:</Attributes>
+                            <Attributes>{attribute.name}:</Attributes>
                             <AttributesContainer>
-                              {x.items.map(x =>
-                                <Span color={x.value} key={Math.random() * 10_0000}></Span>)
+                              {attribute.items.map(x =>
+                                <Span
+                                  active={this.state.attributes[attribute.name]}
+                                  color={x.value}
+                                  key={Math.random() * 10_0000}
+                                  onClick={() => {
+                                    this.setSelectAttribute(x.value, attribute.name)
+                                  }}></Span>)
                               }
                             </AttributesContainer>
                           </div>
@@ -90,9 +105,15 @@ class ProductScreen extends Component {
                       :
                       (
                         (<div key={Math.random() * 10_0000}>
-                            <Attributes>{x.name}:</Attributes>
-                            <AttributesContainer>{x.items.map(x => <Span
-                              key={Math.random() * 10_0000}> {x.value}</Span>)}</AttributesContainer>
+                            <Attributes>{attribute.name}:</Attributes>
+                            <AttributesContainer>{attribute.items.map(x =>
+                              <Span
+                                active={this.state.attributes[attribute.name]}
+                                value={x.value}
+                                key={Math.random() * 10_0000}
+                                onClick={() => {
+                                  this.setSelectAttribute(x.value, attribute.name)
+                                }}>{x.value}</Span>)}</AttributesContainer>
                           </div>
                         )
                       )
@@ -102,8 +123,7 @@ class ProductScreen extends Component {
 
                   </Description>
                   <Price>price:</Price>
-
-                  <Currency> {formatCurrency(product.prices, this.props.currency).icon+formatCurrency(product.prices, this.props.currency).price}</Currency>
+                  <Currency> {formatCurrency(product.prices, this.props.currency).icon + formatCurrency(product.prices, this.props.currency).price}</Currency>
                   <ToCartButton onClick={() => this.props.addToCart(product)}>add to cart</ToCartButton>
                   <Description>{<div dangerouslySetInnerHTML={{__html: product.description}}></div>}</Description>
                 </DescriptionContainer>
@@ -121,5 +141,8 @@ export default connect((state) => ({
     cartItems: state.cart.cartItems,
     currency: state.currency.currency,
   }),
-  {fetchProducts, addToCart}
-)(ProductScreen);
+  {
+    fetchProducts, addToCart,
+  }
+)
+(ProductScreen);

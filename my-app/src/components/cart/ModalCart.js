@@ -7,21 +7,30 @@ import {
   ContentContainer,
   Modal,
   Title,
-  Total, TotalTitle,
+  Total,
+  TotalTitle,
   ViewButton
 } from "../../styleComponents/ModalCartStyle";
 import ProductInCart from "../products/ProductInCart";
 import {connect} from "react-redux";
 
 
-
 class ModalCart extends Component {
+  enableScroll() {
+    window.onscroll = () => {
+    }
+  }
 
   render() {
     const {cartItems, active, setModalActive} = this.props;
 
     return (
-      <Modal active={active} onClick={() => setModalActive(false)}>
+      <Modal active={active} onClick={() => {
+        setModalActive(false);
+        this.enableScroll();
+      }
+      }
+      >
         <ContentContainer onClick={(e) => e.stopPropagation()}>
           <Content>
             <Title><span>My Bag</span>, {cartItems.length} items</Title>

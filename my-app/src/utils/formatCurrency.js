@@ -26,5 +26,10 @@ export default function formatCurrency(prices, currency) {
         icon: "₽",
         price: price,
       }
+    default:
+      return {
+        icon: "$",
+        price: price,
+      }
   }
 }

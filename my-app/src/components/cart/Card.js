@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {addToCart, counterDecrement} from "../../actions/cartActions";
+import {addToCart, counterDecrement, counterIncrement} from "../../actions/cartActions";
 import {ProductDescription} from "../../styleComponents/ProductInCartStyle";
 import {
   Carousel,
@@ -51,12 +51,17 @@ class Card extends Component {
           </ItemPrice>
 
           <Features>
-            {this.props.item.attributes.map(x => x.type === 'swatch' ?
+            {this.props.item.attributes.map(attribute => attribute.type === 'swatch' ?
               (
                 (<div key={Math.random() * 10_0000}>
                     <AttributesContainer>
-                      {x.items.map(x =>
-                        <Span color={x.value} key={Math.random() * 10_0000}></Span>)
+                      {attribute.items.map(x =>
+                        <Span
+                          color={x.value}
+                          key={Math.random() * 10_0000}
+                          active={this.props.item.params[attribute.name]}
+                        >
+                        </Span>)
                       }
                     </AttributesContainer>
                   </div>
@@ -64,9 +69,15 @@ class Card extends Component {
               )
               :
               (
-                (<div key={Math.random() * 10_0000}>
-                    <AttributesContainer>{x.items.map(x => <Span
-                      key={Math.random() * 10_0000}> {x.value}</Span>)}</AttributesContainer>
+                (<div key={Math.random() * 100000}>
+                    <AttributesContainer>{attribute.items.map(x =>
+                      <Span
+                        key={Math.random() * 100000}
+                        active={this.props.item.params[attribute.name]}
+                        value={x.value}
+                      >
+                        {x.value}
+                      </Span>)}</AttributesContainer>
                   </div>
                 )
               )
@@ -80,7 +91,7 @@ class Card extends Component {
         <RightElementsContainer>
 
           <CounterContainer inStock={this.props.item.inStock}>
-            <p onClick={() => this.props.addToCart(this.props.item)}>+</p>
+            <p onClick={() => this.props.counterIncrement(this.props.item)}>+</p>
             <div>{this.props.item.count}</div>
             <p onClick={() => this.props.counterDecrement(this.props.item)}>–</p>
           </CounterContainer>
@@ -118,5 +129,5 @@ export default connect((state) => ({
     cartItems: state.cart.cartItems,
     currency: state.currency.currency,
   }),
-  {counterDecrement, addToCart}
+  {counterDecrement, addToCart, counterIncrement}
 )(Card);

@@ -35,6 +35,14 @@ class Header extends Component {
     })
   }
 
+  disableScroll() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+    window.onscroll = function () {
+      window.scrollTo(scrollLeft, scrollTop);
+    };
+  }
+
   render() {
 
     return (
@@ -107,6 +115,7 @@ class Header extends Component {
               </li>
             </CurrencyList>
             <button onClick={() => {
+              this.disableScroll()
               this.setModalActive(true)
             }}>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

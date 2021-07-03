@@ -18,6 +18,9 @@ export const changeCurrency = (currency) => (dispatch) => {
     case "RUB":
       icon = "₽"
       break
+    default:
+      icon = "$";
+      break
   }
   dispatch({
     type: CHANGE_CURRENCY,

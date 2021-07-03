@@ -40,7 +40,7 @@ class Products extends Component {
               <Ul>
                 {this.props.products.filter(this.filter).map(product => (
                   <Li inStock={product.inStock} key={product.name}>
-                    <A to={`/categories/${this.props.category}/products/${product.name}`}>
+                    <A to={`/categories/${this.props.activeCategory || 'all'}/${product.name}`}>
                       <span>out of stock</span>
                       <ImgContainer>
                         <Img src={product.gallery[0]} alt={product.title}/>
@@ -51,9 +51,9 @@ class Products extends Component {
                       <Currency>
                         {formatCurrency(product.prices, this.props.currency).icon+formatCurrency(product.prices, this.props.currency).price}
                       </Currency>
-                    </A>
+
                     <div>
-                      <CartButton onClick={() => this.props.addToCart(product)}>
+                      <CartButton >
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                              xmlns="http://www.w3.org/2000/svg">
                           <path
@@ -68,6 +68,7 @@ class Products extends Component {
                         </svg>
                       </CartButton>
                     </div>
+                    </A>
                   </Li>
                 ))}
               </Ul>

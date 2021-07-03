@@ -13,7 +13,7 @@ import {
   Ul
 } from "../../styleComponents/ProductInCartStyle";
 import {connect} from "react-redux";
-import {addToCart, counterDecrement} from "../../actions/cartActions";
+import {addToCart, counterDecrement, counterIncrement} from "../../actions/cartActions";
 import {AttributesContainer} from "../../styleComponents/ProductScreenStyles";
 import {Features} from "../../styleComponents/CartStyle";
 
@@ -26,7 +26,7 @@ class ProductInCart extends Component {
       <div>
         <Ul>
           {cartItems.map(item => (
-            <Li inStock={item.inStock} key={item.name}>
+            <Li inStock={item.inStock} key={Math.random() * 100000}>
               <ProductDescription>
                 <ProductName>{item.name}</ProductName>
                 <ProductName>description</ProductName>
@@ -35,12 +35,17 @@ class ProductInCart extends Component {
                 </ProductPrice>
 
                 <Features>
-                  {item.attributes.map(x => x.type === 'swatch' ?
+                  {item.attributes.map(attribute => attribute.type === 'swatch' ?
                     (
-                      (<div key={Math.random() * 10_0000}>
+                      (<div key={Math.random() * 100000}>
                           <AttributesContainer>
-                            {x.items.map(x =>
-                              <Span color={x.value} key={Math.random() * 10_0000}></Span>)
+                            {attribute.items.map(x =>
+                              <Span
+                                color={x.value}
+                                key={Math.random() * 100000}
+                                active={item.params[attribute.name]}
+                              >
+                              </Span>)
                             }
                           </AttributesContainer>
                         </div>
@@ -48,9 +53,15 @@ class ProductInCart extends Component {
                     )
                     :
                     (
-                      (<div key={Math.random() * 10_0000}>
-                          <AttributesContainer>{x.items.map(x => <Span
-                            key={Math.random() * 10_0000}> {x.value}</Span>)}
+                      (<div key={Math.random() * 100000}>
+                          <AttributesContainer>{attribute.items.map(x =>
+                            <Span
+                              key={Math.random() * 100000}
+                              value={x.value}
+                              active={item.params[attribute.name]}
+                            >
+                              {x.value}
+                            </Span>)}
                           </AttributesContainer>
                         </div>
                       )
@@ -64,7 +75,7 @@ class ProductInCart extends Component {
               <CounterImageContainer>
 
                 <Counter inStock={item.inStock}>
-                  <p onClick={() => this.props.addToCart(item)}>+</p>
+                  <p onClick={() => this.props.counterIncrement(item)}>+</p>
                   <div>{item.count}</div>
                   <p onClick={() => this.props.counterDecrement(item)}>-</p>
                 </Counter>
@@ -87,5 +98,5 @@ export default connect((state) => ({
     cartItems: state.cart.cartItems,
     currency: state.currency.currency,
   }),
-  {counterDecrement, addToCart}
+  {counterDecrement, addToCart, counterIncrement}
 )(ProductInCart);

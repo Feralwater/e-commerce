@@ -2,12 +2,8 @@ import styled from 'styled-components';
 import {Link} from "react-router-dom";
 
 export const Ul = styled.ul`
-  //display: flex;
-  //align-items: center;
-  //justify-content: space-between;
   padding: 0;
   list-style-type: none;
-  //flex-wrap: wrap;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 8.5rem 5.5rem;
@@ -24,8 +20,6 @@ export const CartButton = styled.button`
   filter: drop-shadow(0px 4px 11px rgba(29, 31, 34, 0.1));
 `;
 export const Li = styled.li`
-  //padding: 1rem;
-  //margin: 2rem;
   position: relative;
   opacity: ${props => props.inStock ? '1' : '0.5'};
   pointer-events: ${props => props.inStock ? 'all' : 'none'};

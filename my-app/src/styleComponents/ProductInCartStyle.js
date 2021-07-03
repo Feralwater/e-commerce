@@ -88,10 +88,11 @@ export const Span = styled.span`
   justify-content: center;
   align-items: center;
   margin: 1rem 1rem 0 0;
-  cursor: pointer;
+  user-select: none;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 1.4rem;
   line-height: 160%;
   color: #292929;
   background-color: ${props => props.color ? `${props.color}` : '#ffffff'};
+  border: ${props => (props.color === props.active && props.color) || (props.value === props.active && props.value) ? '2px solid #1D1F22' : '1px solid #1D1F22'};
 `;

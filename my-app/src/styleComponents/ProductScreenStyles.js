@@ -103,6 +103,7 @@ export const Span = styled.span`
   color: #292929;
   background-color: ${props => props.color ? `${props.color}` : '#ffffff'};
   border: ${props => (props.color === props.active && props.color) || (props.value === props.active && props.value) ? '2px solid #1D1F22' : '1px solid #1D1F22'};
+  box-shadow: ${props => !props.validate && props.startValidate ? '0px 0px .5rem red' : 'none'};
 `;
 
 export const AttributesContainer = styled.div`

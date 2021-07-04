@@ -1,4 +1,4 @@
-import {createGlobalStyle} from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
 
@@ -371,5 +371,5 @@ const GlobalStyles = createGlobalStyle`
   [hidden] {
     display: none;
   }
-`
+`;
 export default GlobalStyles;

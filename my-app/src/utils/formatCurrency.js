@@ -1,35 +1,28 @@
 export default function formatCurrency(prices, currency) {
-  const price = Number(prices.find(x => x.currency === currency).amount.toFixed(2)).toLocaleString();
+  const price = Number(prices.find((x) => x.currency === currency).amount.toFixed(2)).toLocaleString();
   switch (currency) {
-    case "USD":
+    case 'USD':
+    case 'AUD':
       return {
-        icon: "$",
-        price: price,
-      }
-    case "GBP":
+        icon: '$',
+        price,
+      };
+    case 'GBP':
       return {
-        icon: "£",
-        price: price,
-      }
-    case "AUD":
+        icon: '£',
+        price,
+      };
+    case 'JPY':
       return {
-        icon: "$",
-        price: price,
-      }
-    case "JPY":
+        icon: '¥',
+        price,
+      };
+    case 'RUB':
       return {
-        icon: "¥",
-        price: price,
-      }
-    case "RUB":
-      return {
-        icon: "₽",
-        price: price,
-      }
+        icon: '₽',
+        price,
+      };
     default:
-      return {
-        icon: "$",
-        price: price,
-      }
+      throw new Error('something went wrong.');
   }
 }

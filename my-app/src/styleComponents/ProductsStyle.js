@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {Link} from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export const Ul = styled.ul`
   padding: 0;
@@ -21,8 +21,8 @@ export const CartButton = styled.button`
 `;
 export const Li = styled.li`
   position: relative;
-  opacity: ${props => props.inStock ? '1' : '0.5'};
-  pointer-events: ${props => props.inStock ? 'all' : 'none'};
+  opacity: ${(properties) => (properties.inStock ? '1' : '0.5')};
+  pointer-events: ${(properties) => (properties.inStock ? 'all' : 'none')};
 
   &:hover ${CartButton} {
     display: flex;
@@ -33,7 +33,7 @@ export const Li = styled.li`
     font-size: 2.4rem;
     position: absolute;
     top: calc(50% + 1rem);
-    display: ${props => props.inStock ? 'none' : 'flex'};
+    display: ${(properties) => (properties.inStock ? 'none' : 'flex')};
     width: 100%;
     align-items: center;
     justify-content: center;

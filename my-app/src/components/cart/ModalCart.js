@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   Buttons,
   CartBottomWrapper,
@@ -9,46 +10,57 @@ import {
   Title,
   Total,
   TotalTitle,
-  ViewButton
-} from "../../styleComponents/ModalCartStyle";
-import ProductInCart from "../products/ProductInCart";
-import {connect} from "react-redux";
-
+  ViewButton,
+} from '../../styleComponents/ModalCartStyle';
+import ProductInCart from '../products/ProductInCart';
 
 class ModalCart extends Component {
-  enableScroll() {
-    window.onscroll = () => {
-    }
-  }
+  enableScroll = () => {
+    window.addEventListener('scroll', () => {
+    });
+  };
 
   render() {
-    const {cartItems, active, setModalActive} = this.props;
+    const {
+      cartItems,
+      active,
+      setModalActive,
+      currency,
+    } = this.props;
 
     return (
-      <Modal active={active} onClick={() => {
-        setModalActive(false);
-        this.enableScroll();
-      }
-      }
+      <Modal
+        active={active}
+        onClick={() => {
+          setModalActive(false);
+          this.enableScroll();
+        }}
       >
         <ContentContainer onClick={(e) => e.stopPropagation()}>
           <Content>
-            <Title><span>My Bag</span>, {cartItems.length} items</Title>
-            <ProductInCart cartItems={cartItems}/>
+            <Title>
+              <span>My Bag</span>
+              ,
+              {' '}
+              {cartItems.length}
+              {' '}
+              items
+            </Title>
+            <ProductInCart cartItems={cartItems} />
             <CartBottomWrapper>
               <Total>
                 <TotalTitle>Total</TotalTitle>
                 <p>
-                  {this.props.currency.icon + cartItems.reduce((accum, item) => {
-                    const amount = item.prices.find(cur => cur.currency === this.props.currency.currency).amount
-                    const count = item.count
-                    return Number((accum + amount * count).toFixed(2))
+                  {currency.icon + cartItems.reduce((accum, item) => {
+                    const { amount } = item.prices.find((current) => current.currency === currency.currency);
+                    const { count } = item;
+                    return Number((accum + amount * count).toFixed(2));
                   }, 0)}
                 </p>
               </Total>
               <Buttons>
-                <ViewButton to='/cart'>view bag</ViewButton>
-                <CheckButton to='/checkout'>check out</CheckButton>
+                <ViewButton to="/cart">view bag</ViewButton>
+                <CheckButton to="/checkout">check out</CheckButton>
               </Buttons>
             </CartBottomWrapper>
           </Content>
@@ -59,8 +71,7 @@ class ModalCart extends Component {
 }
 
 export default connect((state) => ({
-    cartItems: state.cart.cartItems,
-    currency: state.currency,
-  }),
-  null
-)(ModalCart);
+  cartItems: state.cart.cartItems,
+  currency: state.currency,
+}),
+null)(ModalCart);

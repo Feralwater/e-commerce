@@ -11,5 +11,3 @@ export const Container = styled.div`
 export const Main = styled.main`
   background-color: #ffffff;
 `;
-
-

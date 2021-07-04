@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   margin: 14rem 0 0 0;
@@ -14,8 +14,8 @@ export const CartTitle = styled.div`
   margin: 16rem 0 6rem 0;
 `;
 export const CardContainer = styled.li`
-  opacity: ${props => props.inStock ? '1' : '0.5'};
-  pointer-events: ${props => props.inStock ? 'all' : 'none'};
+  opacity: ${(properties) => (properties.inStock ? '1' : '0.5')};
+  pointer-events: ${(properties) => (properties.inStock ? 'all' : 'none')};
 `;
 export const ItemName = styled.div`
   font-weight: 600;
@@ -60,7 +60,7 @@ export const CounterContainer = styled.div`
   }
 
   & p:first-child {
-    pointer-events: ${props => !props.inStock && 'none'};
+    pointer-events: ${(properties) => !properties.inStock && 'none'};
   }
 `;
 export const RightElementsContainer = styled.div`
@@ -128,6 +128,6 @@ export const Slider = styled.img`
 
 `;
 export const Carousel = styled.div`
-  // opacity: ${props => props.index === props.current ? '1' : '0.8'};
+  // opacity: ${(properties) => (properties.index === properties.current ? '1' : '0.8')};
   // transition: .5s ease-out;
 `;

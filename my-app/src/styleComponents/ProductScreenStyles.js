@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Div = styled.div`
   display: flex;
@@ -101,9 +101,9 @@ export const Span = styled.span`
   line-height: 1.8rem;
   letter-spacing: 0.05em;
   color: #292929;
-  background-color: ${props => props.color ? `${props.color}` : '#ffffff'};
-  border: ${props => (props.color === props.active && props.color) || (props.value === props.active && props.value) ? '2px solid #1D1F22' : '1px solid #1D1F22'};
-  box-shadow: ${props => !props.validate && props.startValidate ? '0px 0px .5rem red' : 'none'};
+  background-color: ${(properties) => (properties.color ? `${properties.color}` : '#ffffff')};
+  border: ${(properties) => ((properties.color === properties.active && properties.color) || (properties.value === properties.active && properties.value) ? '2px solid #1D1F22' : '1px solid #1D1F22')};
+  box-shadow: ${(properties) => (!properties.validate && properties.startValidate ? '0px 0px .5rem red' : 'none')};
 `;
 
 export const AttributesContainer = styled.div`

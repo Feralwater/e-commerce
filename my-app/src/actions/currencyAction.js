@@ -1,31 +1,29 @@
-import {CHANGE_CURRENCY} from "../types";
+import { CHANGE_CURRENCY } from '../types';
 
 export const changeCurrency = (currency) => (dispatch) => {
   let icon;
   switch (currency) {
-    case "USD":
-      icon = "$";
-      break
-    case "GBP":
-      icon = "£"
-      break
-    case "AUD":
-      icon = "$"
-      break
-    case "JPY":
-      icon = "¥"
-      break
-    case "RUB":
-      icon = "₽"
-      break
+    case 'USD':
+      icon = '$';
+      break;
+    case 'GBP':
+      icon = '£';
+      break;
+    case 'AUD':
+      icon = '$';
+      break;
+    case 'JPY':
+      icon = '¥';
+      break;
+    case 'RUB':
+      icon = '₽';
+      break;
     default:
-      icon = "$";
-      break
+      icon = '$';
+      break;
   }
   dispatch({
     type: CHANGE_CURRENCY,
-    payload: {currency, icon}
+    payload: { currency, icon },
   });
-}
-
-
+};

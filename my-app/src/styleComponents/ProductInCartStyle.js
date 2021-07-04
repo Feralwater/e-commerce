@@ -1,5 +1,4 @@
-import styled from "styled-components";
-
+import styled from 'styled-components';
 
 export const Ul = styled.ul`
   display: flex;
@@ -15,8 +14,8 @@ export const Li = styled.li`
   justify-content: space-between;
   margin-bottom: 4.1rem;
   position: relative;
-  opacity: ${props => props.inStock ? '1' : '0.5'};
-  pointer-events: ${props => props.inStock ? 'all' : 'none'};
+  opacity: ${(properties) => (properties.inStock ? '1' : '0.5')};
+  pointer-events: ${(properties) => (properties.inStock ? 'all' : 'none')};
 `;
 export const CartImage = styled.div`
   width: 10.5rem;
@@ -68,7 +67,7 @@ export const Counter = styled.div`
   }
 
   & p:first-child {
-    pointer-events: ${props => !props.inStock && 'none'};
+    pointer-events: ${(properties) => !properties.inStock && 'none'};
   }
 `;
 export const CounterImageContainer = styled.div`
@@ -93,6 +92,6 @@ export const Span = styled.span`
   font-size: 1.4rem;
   line-height: 160%;
   color: #292929;
-  background-color: ${props => props.color ? `${props.color}` : '#ffffff'};
-  border: ${props => (props.color === props.active && props.color) || (props.value === props.active && props.value) ? '2px solid #1D1F22' : '1px solid #1D1F22'};
+  background-color: ${(properties) => (properties.color ? `${properties.color}` : '#ffffff')};
+  border: ${(properties) => ((properties.color === properties.active && properties.color) || (properties.value === properties.active && properties.value) ? '2px solid #1D1F22' : '1px solid #1D1F22')};
 `;

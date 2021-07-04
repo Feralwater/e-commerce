@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import {NavLink as Link} from 'react-router-dom';
+import styled from 'styled-components';
+import { NavLink as Link } from 'react-router-dom';
 
 export const Modal = styled.div`
   background: rgba(57, 55, 72, 0.22);
@@ -8,12 +8,11 @@ export const Modal = styled.div`
   right: 0;
   left: 0;
   bottom: 0;
-    //opacity: ${props => props.active ? '1' : '0'};
-    display: ${props => !props.active && 'none'};
+    //opacity: ${(properties) => (properties.active ? '1' : '0')};
+    display: ${(properties) => !properties.active && 'none'};
   transition: .5s;
   pointer-events: all;
 `;
-
 
 export const ContentContainer = styled.div`
   position: relative;

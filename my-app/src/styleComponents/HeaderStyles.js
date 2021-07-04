@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const HeaderContainer = styled.header`
   position: fixed;
@@ -40,7 +40,7 @@ export const CartItemsTotal = styled.div`
   height: 2rem;
 `;
 export const CurrencyList = styled.ul`
-  display: ${props => !props.active && 'none'};
+  display: ${(properties) => !properties.active && 'none'};
   list-style-type: none;
   margin: 0;
   padding-inline-start: 0;
@@ -84,7 +84,7 @@ export const Currency = styled.div`
     height: 0.4rem;
     vertical-align: middle;
     width: 0.4rem;
-    transform: ${props => props.active ? 'rotate(-45deg)' : 'rotate(135deg)'};
+    transform: ${(properties) => (properties.active ? 'rotate(-45deg)' : 'rotate(135deg)')};
     margin: 0 0 0 1rem;
   }
 `;

@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {connect} from "react-redux";
-import {addToCart, counterDecrement, counterIncrement} from "../../actions/cartActions";
-import {ProductDescription} from "../../styleComponents/ProductInCartStyle";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addToCart, counterDecrement, counterIncrement } from '../../actions/cartActions';
+import { ProductDescription } from '../../styleComponents/ProductInCartStyle';
 import {
   Carousel,
   CartImg,
@@ -10,113 +10,115 @@ import {
   ItemDescription,
   ItemName,
   ItemPrice,
-  NextArrow,
   PrevArrow,
+  NextArrow,
   RightElementsContainer,
-  Slider
-} from "../../styleComponents/CartStyle";
-import formatCurrency from "../../utils/formatCurrency";
-import {AttributesContainer, Span} from "../../styleComponents/ProductScreenStyles";
-import {CardWrapper} from "../../styleComponents/CardStyle";
-
+  Slider,
+} from '../../styleComponents/CartStyle';
+import formatCurrency from '../../utils/formatCurrency';
+import { AttributesContainer, Span } from '../../styleComponents/ProductScreenStyles';
+import { CardWrapper } from '../../styleComponents/CardStyle';
 
 class Card extends Component {
   constructor() {
     super();
     this.state = {
       current: 0,
-    }
+    };
   }
 
   nextSlide = (length, current) => {
     this.setState({
-      current: current === length - 1 ? 0 : current + 1
-    })
+      current: current === length - 1 ? 0 : current + 1,
+    });
   }
 
   prevSlide = (length, current) => {
     this.setState({
       current: current === 0 ? length - 1 : current - 1,
-    })
+    });
   }
 
   render() {
+    const {
+      item, currency, counterIncrement, counterDecrement,
+    } = this.props;
+    const { current } = this.state;
     return (
       <CardWrapper>
         <ProductDescription>
-          <ItemName>{this.props.item.name}</ItemName>
-          <ItemDescription>description???</ItemDescription>
+          <ItemName>{item.name}</ItemName>
+          <ItemDescription>{item.category}</ItemDescription>
           <ItemPrice>
-            {formatCurrency(this.props.item.prices, this.props.currency).icon + formatCurrency(this.props.item.prices, this.props.currency).price}
+            {formatCurrency(item.prices, currency).icon + formatCurrency(item.prices, currency).price}
           </ItemPrice>
 
           <Features>
-            {this.props.item.attributes.map(attribute => attribute.type === 'swatch' ?
-              (
-                (<div key={Math.random() * 10_0000}>
+            {item.attributes.map((attribute) => (attribute.type === 'swatch'
+              ? (
+                (
+                  <div key={Math.random() * 100_000}>
                     <AttributesContainer>
-                      {attribute.items.map(x =>
+                      {attribute.items.map((x) => (
                         <Span
                           color={x.value}
-                          key={Math.random() * 10_0000}
-                          active={this.props.item.params[attribute.name]}
-                        >
-                        </Span>)
-                      }
+                          key={Math.random() * 100_000}
+                          active={item.params[attribute.name]}
+                        />
+                      ))}
                     </AttributesContainer>
                   </div>
                 )
               )
-              :
-              (
-                (<div key={Math.random() * 100000}>
-                    <AttributesContainer>{attribute.items.map(x =>
-                      <Span
-                        key={Math.random() * 100000}
-                        active={this.props.item.params[attribute.name]}
-                        value={x.value}
-                      >
-                        {x.value}
-                      </Span>)}</AttributesContainer>
+              : (
+                (
+                  <div key={Math.random() * 100_000}>
+                    <AttributesContainer>
+                      {attribute.items.map((x) => (
+                        <Span
+                          key={Math.random() * 100_000}
+                          active={item.params[attribute.name]}
+                          value={x.value}
+                        >
+                          {x.value}
+                        </Span>
+                      ))}
+                    </AttributesContainer>
                   </div>
                 )
-              )
-            )
-            }
+              )))}
           </Features>
-
 
         </ProductDescription>
 
         <RightElementsContainer>
 
-          <CounterContainer inStock={this.props.item.inStock}>
-            <p onClick={() => this.props.counterIncrement(this.props.item)}>+</p>
-            <div>{this.props.item.count}</div>
-            <p onClick={() => this.props.counterDecrement(this.props.item)}>–</p>
+          <CounterContainer inStock={item.inStock}>
+            <p onClick={() => counterIncrement(item)}>+</p>
+            <div>{item.count}</div>
+            <p onClick={() => counterDecrement(item)}>–</p>
           </CounterContainer>
 
-          {!Array.isArray(this.props.item.gallery) || this.props.item.gallery.length <= 0 ?
+          {!Array.isArray(item.gallery) || item.gallery.length <= 0
 
-            <img src="https://acoustic-atm.ru/userfiles/default_images/default.jpg" alt=""/>
-            :
-            <CartImg>
-              <PrevArrow
-                onClick={() => this.prevSlide(this.props.item.gallery.length, this.state.current)}></PrevArrow>
-              <NextArrow
-                onClick={() => this.nextSlide(this.props.item.gallery.length, this.state.current)}></NextArrow>
-              {this.props.item.gallery.map((slide, index) => {
-                return (
-                  <Carousel index={index} current={this.state.current}>
-                    {index === this.state.current && (<Slider src={slide} alt={this.props.item.name}/>)}
-                  </Carousel>)
+            ? <img src="https://acoustic-atm.ru/userfiles/default_images/default.jpg" alt="" />
+            : (
+              <CartImg>
+                <PrevArrow
+                  onClick={() => this.prevSlide(item.gallery.length, current)}
+                />
+                <NextArrow
+                  onClick={() => this.nextSlide(item.gallery.length, current)}
+                />
+                {item.gallery.map((slide, index) => (
+                  <Carousel index={index} current={current}>
+                    {index === current && (
+                      <Slider src={slide} alt={item.name} />)}
+                  </Carousel>
+                ))}
 
-
-              })}
-
-            </CartImg>
-          }
-
+              </CartImg>
+            )}
 
         </RightElementsContainer>
       </CardWrapper>
@@ -124,10 +126,8 @@ class Card extends Component {
   }
 }
 
-
 export default connect((state) => ({
-    cartItems: state.cart.cartItems,
-    currency: state.currency.currency,
-  }),
-  {counterDecrement, addToCart, counterIncrement}
-)(Card);
+  cartItems: state.cart.cartItems,
+  currency: state.currency.currency,
+}),
+{ counterDecrement, addToCart, counterIncrement })(Card);

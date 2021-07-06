@@ -91,7 +91,11 @@ export const Span = styled.span`
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 1.4rem;
   line-height: 160%;
-  color: #292929;
+  // color: #292929;
+  // background-color: ${(properties) => (properties.color ? `${properties.color}` : '#ffffff')};
+  // border: ${(properties) => ((properties.color === properties.active && properties.color) || (properties.value === properties.active && properties.value) ? '2px solid #1D1F22' : '1px solid #1D1F22')};
+  color: ${(properties) => (properties.value === properties.active ? '#ffffff' : '#292929')};
   background-color: ${(properties) => (properties.color ? `${properties.color}` : '#ffffff')};
-  border: ${(properties) => ((properties.color === properties.active && properties.color) || (properties.value === properties.active && properties.value) ? '2px solid #1D1F22' : '1px solid #1D1F22')};
+  background-color: ${(properties) => (!properties.color && properties.value === properties.active && '#000000')};
+  border: ${(properties) => (properties.color === properties.active && properties.color ? '2px solid #1D1F22' : '1px solid #1D1F22')};
 `;

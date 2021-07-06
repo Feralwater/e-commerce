@@ -27,7 +27,7 @@ const CARD_QUERY = gql`
     }
 `;
 const client = new ApolloClient({
-  uri: process.env.REACT_APP_GRAPHQL_HOST,
+  uri: 'http://localhost:4000/',
   cache: new InMemoryCache(),
 });
 

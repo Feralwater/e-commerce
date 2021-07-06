@@ -39,12 +39,11 @@ class ProductScreen extends Component {
   }
 
   setSelectAttribute = (attribute, name) => {
+    const { attributes } = this.state;
     this.setState(
-      {
-        attributes: { [name]: attribute },
-      },
+      { ...this.state, attributes: { ...attributes, [name]: attribute } },
     );
-  };
+  }
 
   setSelectedImg = (index) => {
     this.setState({
@@ -53,12 +52,11 @@ class ProductScreen extends Component {
   };
 
   setValidate = (name, boolean) => {
+    const { validate } = this.state;
     this.setState({
-      validate: {
-        [name]: boolean,
-      },
+      validate: { ...validate, [name]: boolean },
     });
-  };
+  }
 
   setValidate2 = (boolean) => {
     this.setState({

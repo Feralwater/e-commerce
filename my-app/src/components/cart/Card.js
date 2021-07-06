@@ -111,7 +111,11 @@ class Card extends Component {
                   onClick={() => this.nextSlide(item.gallery.length, current)}
                 />
                 {item.gallery.map((slide, index) => (
-                  <Carousel index={index} current={current}>
+                  <Carousel
+                    index={index}
+                    key={Math.random() * 100_000}
+                    current={current}
+                  >
                     {index === current && (
                       <Slider src={slide} alt={item.name} />)}
                   </Carousel>

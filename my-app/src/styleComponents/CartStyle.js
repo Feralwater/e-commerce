@@ -48,7 +48,7 @@ export const CounterContainer = styled.div`
   & p {
     border: 1px solid #1D1F22;
     width: 4.4rem;
-    height: 4.4rem;
+    height: 4.1rem;
     text-align: center;
     cursor: pointer;
     user-select: none;
@@ -57,6 +57,7 @@ export const CounterContainer = styled.div`
     font-size: 3.4rem;
     font-weight: 300;
     font-family: "Roboto", sans-serif;
+    padding: .3rem 0 0 0;
   }
 
   & p:first-child {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
@@ -17,7 +17,7 @@ import {
 } from '../../styleComponents/ProductsStyle';
 import { addToCart } from '../../actions/cartActions';
 
-class Products extends Component {
+class Products extends React.PureComponent {
   componentDidMount() {
     const { fetchProducts } = this.props;
     fetchProducts();
@@ -85,10 +85,8 @@ class Products extends Component {
                     </Li>
                   ))}
               </Ul>
-
             )
         }
-
       </div>
     );
   }

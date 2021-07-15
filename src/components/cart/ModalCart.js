@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import {
   Buttons,
@@ -14,10 +14,10 @@ import {
 } from '../../styleComponents/ModalCartStyle';
 import ProductInCart from '../products/ProductInCart';
 
-class ModalCart extends Component {
+class ModalCart extends React.PureComponent {
   enableScroll = () => {
-    window.addEventListener('scroll', () => {
-    });
+    window.onscroll = () => {
+    };
   };
 
   render() {

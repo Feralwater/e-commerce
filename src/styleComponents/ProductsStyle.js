@@ -22,7 +22,7 @@ export const CartButton = styled.button`
 export const Li = styled.li`
   position: relative;
   opacity: ${(properties) => (properties.inStock ? '1' : '0.5')};
-  pointer-events: ${(properties) => (properties.inStock ? 'all' : 'none')};
+  //pointer-events: ${(properties) => (properties.inStock ? 'all' : 'none')};
 
   &:hover ${CartButton} {
     display: flex;

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { addToCart, counterDecrement, counterIncrement } from '../../actions/cartActions';
 import { ProductDescription } from '../../styleComponents/ProductInCartStyle';
@@ -10,8 +10,8 @@ import {
   ItemDescription,
   ItemName,
   ItemPrice,
-  PrevArrow,
   NextArrow,
+  PrevArrow,
   RightElementsContainer,
   Slider,
 } from '../../styleComponents/CartStyle';
@@ -19,7 +19,7 @@ import formatCurrency from '../../utils/formatCurrency';
 import { AttributesContainer, Span } from '../../styleComponents/ProductScreenStyles';
 import { CardWrapper } from '../../styleComponents/CardStyle';
 
-class Card extends Component {
+class Card extends React.PureComponent {
   constructor() {
     super();
     this.state = {
@@ -31,17 +31,20 @@ class Card extends Component {
     this.setState({
       current: current === length - 1 ? 0 : current + 1,
     });
-  }
+  };
 
   prevSlide = (length, current) => {
     this.setState({
       current: current === 0 ? length - 1 : current - 1,
     });
-  }
+  };
 
   render() {
     const {
-      item, currency, counterIncrement, counterDecrement,
+      item,
+      currency,
+      counterIncrement,
+      counterDecrement,
     } = this.props;
     const { current } = this.state;
     return (
@@ -134,4 +137,8 @@ export default connect((state) => ({
   cartItems: state.cart.cartItems,
   currency: state.currency.currency,
 }),
-{ counterDecrement, addToCart, counterIncrement })(Card);
+{
+  counterDecrement,
+  addToCart,
+  counterIncrement,
+})(Card);

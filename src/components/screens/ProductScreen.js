@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import {
   Attributes,
@@ -22,9 +22,9 @@ import { fetchProducts } from '../../actions/productActions';
 import { addToCart } from '../../actions/cartActions';
 import formatCurrency from '../../utils/formatCurrency';
 
-class ProductScreen extends Component {
-  constructor() {
-    super();
+class ProductScreen extends React.PureComponent {
+  constructor(props) {
+    super(props);
     this.state = {
       imageIndex: 0,
       attributes: {},
@@ -41,9 +41,15 @@ class ProductScreen extends Component {
   setSelectAttribute = (attribute, name) => {
     const { attributes } = this.state;
     this.setState(
-      { ...this.state, attributes: { ...attributes, [name]: attribute } },
+      {
+        ...this.state,
+        attributes: {
+          ...attributes,
+          [name]: attribute,
+        },
+      },
     );
-  }
+  };
 
   setSelectedImg = (index) => {
     this.setState({
@@ -54,9 +60,12 @@ class ProductScreen extends Component {
   setValidate = (name, boolean) => {
     const { validate } = this.state;
     this.setState({
-      validate: { ...validate, [name]: boolean },
+      validate: {
+        ...validate,
+        [name]: boolean,
+      },
     });
-  }
+  };
 
   setValidate2 = (boolean) => {
     this.setState({
@@ -80,7 +89,7 @@ class ProductScreen extends Component {
     const product = products?.find((x) => x.name === match.params.name);
 
     return (
-      <>
+      <div>
         {
           !products
             ? (<div>Loading...</div>)
@@ -191,7 +200,7 @@ class ProductScreen extends Component {
               </>
             )
         }
-      </>
+      </div>
     );
   }
 }

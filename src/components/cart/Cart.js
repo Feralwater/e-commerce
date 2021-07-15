@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import Header from '../header/Header';
 import { Container } from '../../styleComponents/HomeStyles';
@@ -7,7 +7,7 @@ import { Ul } from '../../styleComponents/ProductInCartStyle';
 import { addToCart, counterDecrement } from '../../actions/cartActions';
 import Card from './Card';
 
-class Cart extends Component {
+class Cart extends React.PureComponent {
   render() {
     const { cartItems } = this.props;
     return (
@@ -34,4 +34,7 @@ export default connect((state) => ({
   cartItems: state.cart.cartItems,
   currency: state.currency.currency,
 }),
-{ counterDecrement, addToCart })(Cart);
+{
+  counterDecrement,
+  addToCart,
+})(Cart);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import DOMPurify from 'dompurify';
 import {
   Attributes,
   AttributesContainer,
@@ -192,7 +193,9 @@ class ProductScreen extends React.PureComponent {
                         add to cart
                       </ToCartButton>
                       <Description>
-                        <div dangerouslySetInnerHTML={{ __html: product.description }} />
+                        <div
+                          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(product.description) }}
+                        />
                       </Description>
                     </DescriptionContainer>
                   </Div>

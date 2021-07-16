@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import DOMPurify from 'dompurify';
 import {
-  Attributes,
-  AttributesContainer,
   Currency,
   Description,
   DescriptionContainer,
@@ -11,7 +9,6 @@ import {
   Name,
   Price,
   ProductDescription,
-  Span,
 } from '../../styleComponents/ProductScreenStyles';
 import { Container } from '../../styleComponents/HomeStyles';
 import Header from '../header/Header';
@@ -19,6 +16,7 @@ import { fetchProducts } from '../../actions/productActions';
 import formatCurrency from '../../utils/formatCurrency';
 import ImageSwitcher from './ImageSwitcher';
 import CartButton from './CartButton';
+import DisplayAndValidateProductAttributes from './DisplayAndValidateProductAttributes';
 
 class ProductScreen extends React.PureComponent {
   constructor(props) {
@@ -91,65 +89,14 @@ class ProductScreen extends React.PureComponent {
                     <DescriptionContainer>
                       <Name>{product.name}</Name>
                       <ProductDescription>{product.category}</ProductDescription>
-                      <Description>
-
-                        {product.attributes.map((attribute) => (attribute.type === 'swatch'
-                          ? (
-                            (
-                              <div key={Math.random() * 100_000}>
-                                <Attributes>
-                                  {attribute.name}
-                                  :
-                                </Attributes>
-                                <AttributesContainer>
-                                  {attribute.items.map((x) => (
-                                    <Span
-                                      inStock={product.inStock}
-                                      validate={validate[attribute.name]}
-                                      startValidate={startValidate}
-                                      active={attributes[attribute.name]}
-                                      color={x.value}
-                                      key={Math.random() * 100_000}
-                                      onClick={() => {
-                                        this.setSelectAttribute(x.value, attribute.name);
-                                        this.setValidate(attribute.name, true);
-                                      }}
-                                    />
-                                  ))}
-                                </AttributesContainer>
-                              </div>
-                            )
-                          )
-                          : (
-                            (
-                              <div key={Math.random() * 100_000}>
-                                <Attributes>
-                                  {attribute.name}
-                                  :
-                                </Attributes>
-                                <AttributesContainer>
-                                  {attribute.items.map((x) => (
-                                    <Span
-                                      inStock={product.inStock}
-                                      validate={validate[attribute.name]}
-                                      startValidate={startValidate}
-                                      active={attributes[attribute.name]}
-                                      value={x.value}
-                                      key={Math.random() * 100_000}
-                                      onClick={() => {
-                                        this.setSelectAttribute(x.value, attribute.name);
-                                        this.setValidate(attribute.name, true);
-                                      }}
-                                    >
-                                      {x.value}
-                                    </Span>
-                                  ))}
-                                </AttributesContainer>
-                              </div>
-                            )
-                          )))}
-
-                      </Description>
+                      <DisplayAndValidateProductAttributes
+                        product={product}
+                        validate={validate}
+                        startValidate={startValidate}
+                        attributes={attributes}
+                        setSelectAttribute={this.setSelectAttribute}
+                        setValidate={this.setValidate}
+                      />
                       <Price>price:</Price>
                       <Currency>
                         {' '}

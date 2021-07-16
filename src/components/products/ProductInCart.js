@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import formatCurrency from '../../utils/formatCurrency';
 import {
-  AttributeName,
   CartImage,
   Counter,
   CounterImageContainer,
@@ -11,12 +10,10 @@ import {
   ProductDescription,
   ProductName,
   ProductPrice,
-  Span,
   Ul,
 } from '../../styleComponents/ProductInCartStyle';
 import { addToCart, counterDecrement, counterIncrement } from '../../actions/cartActions';
-import { AttributesContainer } from '../../styleComponents/ProductScreenStyles';
-import { Features } from '../../styleComponents/CartStyle';
+import ChooseFeaturesInCartDisplay from './ChooseFeauturesInCartDisplay';
 
 class ProductInCart extends React.PureComponent {
   render() {
@@ -36,43 +33,7 @@ class ProductInCart extends React.PureComponent {
               <ProductPrice>
                 {formatCurrency(item.prices, currency).icon + formatCurrency(item.prices, currency).price}
               </ProductPrice>
-              <Features>
-                {item.attributes.map((attribute) => (
-                  attribute.type === 'swatch'
-                    ? (
-                      (
-                        <div key={Math.random() * 100_000}>
-                          <AttributesContainer>
-                            {attribute.items.map((x) => (
-                              <Span
-                                color={x.value}
-                                key={Math.random() * 100_000}
-                                active={item.params[attribute.name]}
-                              />
-                            ))}
-                          </AttributesContainer>
-                        </div>
-                      )
-                    )
-                    : (
-                      (
-                        <div key={Math.random() * 100_000}>
-                          <AttributeName>{attribute.name}</AttributeName>
-                          <AttributesContainer>
-                            {attribute.items.map((x) => (
-                              <Span
-                                key={Math.random() * 100_000}
-                                value={x.value}
-                                active={item.params[attribute.name]}
-                              >
-                                {x.value}
-                              </Span>
-                            ))}
-                          </AttributesContainer>
-                        </div>
-                      )
-                    )))}
-              </Features>
+              <ChooseFeaturesInCartDisplay item={item} />
 
             </ProductDescription>
 

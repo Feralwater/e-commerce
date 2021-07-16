@@ -22,10 +22,15 @@ export const CartButton = styled.button`
 export const Li = styled.li`
   position: relative;
   opacity: ${(properties) => (properties.inStock ? '1' : '0.5')};
-  //pointer-events: ${(properties) => (properties.inStock ? 'all' : 'none')};
+    //pointer-events: ${(properties) => (properties.inStock ? 'all' : 'none')};
 
   &:hover ${CartButton} {
-    display: flex;
+    display: ${(properties) => (properties.inStock && 'flex')};
+  }
+
+  &:hover {
+    box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+    transform: scale(1.1);
   }
 
   & span {
@@ -48,11 +53,6 @@ export const A = styled(Link)`
   flex-direction: column;
   text-decoration: none;
   padding: 1rem;
-
-  &:hover {
-    box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
-    transform: scale(1.1);
-  }
 `;
 export const ImgContainer = styled.div`
   width: 35.4rem;

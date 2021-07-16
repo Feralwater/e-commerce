@@ -22,6 +22,18 @@ class Header extends React.PureComponent {
     };
   }
 
+  componentDidMount() {
+    // document.addEventListener('click', this.handleOutsideClick);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleOutsideClick);
+  }
+
+  handleOutsideClick=() => {
+    this.setState({ currencyActive: false });
+  }
+
   setCurrencyActive = (boolean) => {
     this.setState({
       currencyActive: boolean,
@@ -179,7 +191,7 @@ class Header extends React.PureComponent {
             </svg>
           </button>
           {cartItems.length > 0
-          && <CartItemsTotal>{cartItems.length}</CartItemsTotal>}
+          && <CartItemsTotal>{cartItems.reduce((total, current) => total + current.count, 0)}</CartItemsTotal>}
         </CurrencyCart>
         <ModalCart
           active={modalActive}

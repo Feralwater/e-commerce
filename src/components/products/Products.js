@@ -23,7 +23,7 @@ class Products extends React.PureComponent {
     fetchProducts();
   }
 
-  handleClick = (item, history, addToCart, activeCategory) => {
+  addToCartFromPLP = (item, history, addToCart, activeCategory) => {
     if (item.attributes.length === 0) {
       addToCart(item, item.attributes);
     } else {
@@ -71,7 +71,7 @@ class Products extends React.PureComponent {
                         <CartButton
                           inStock={product.inStock}
                           onClick={() => {
-                            this.handleClick(product, history, addToCart, activeCategory);
+                            this.addToCartFromPLP(product, history, addToCart, activeCategory);
                           }}
                         >
                           <svg

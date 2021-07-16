@@ -10,7 +10,7 @@ export const changeCurrency = (currency) => (dispatch) => {
       icon = '£';
       break;
     case 'AUD':
-      icon = '$';
+      icon = 'A$';
       break;
     case 'JPY':
       icon = '¥';

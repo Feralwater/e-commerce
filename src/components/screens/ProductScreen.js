@@ -12,14 +12,13 @@ import {
   Price,
   ProductDescription,
   Span,
-  ToCartButton,
 } from '../../styleComponents/ProductScreenStyles';
 import { Container } from '../../styleComponents/HomeStyles';
 import Header from '../header/Header';
 import { fetchProducts } from '../../actions/productActions';
-import { addToCart } from '../../actions/cartActions';
 import formatCurrency from '../../utils/formatCurrency';
 import ImageSwitcher from './ImageSwitcher';
+import CartButton from './CartButton';
 
 class ProductScreen extends React.PureComponent {
   constructor(props) {
@@ -70,7 +69,6 @@ class ProductScreen extends React.PureComponent {
       currency,
       products,
       match,
-      addToCart,
     } = this.props;
     const {
       validate,
@@ -157,18 +155,11 @@ class ProductScreen extends React.PureComponent {
                         {' '}
                         {formatCurrency(product.prices, currency).icon + formatCurrency(product.prices, currency).price}
                       </Currency>
-                      <ToCartButton
-                        inStock={product.inStock}
-                        onClick={() => {
-                          if (Object.keys(attributes).length < product.attributes.length) {
-                            this.setValidate2(true);
-                          } else {
-                            addToCart(product, attributes);
-                          }
-                        }}
-                      >
-                        {product.inStock ? 'add to cart' : 'out of stock'}
-                      </ToCartButton>
+                      <CartButton
+                        product={product}
+                        attributes={attributes}
+                        setValidate2={this.setValidate2}
+                      />
                       <Description>
                         <div
                           dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(product.description) }}
@@ -193,5 +184,4 @@ export default connect((state) => ({
 }),
 {
   fetchProducts,
-  addToCart,
 })(ProductScreen);

@@ -35,7 +35,7 @@ class ProductInCart extends React.PureComponent {
               <ProductPrice>
                 {formatCurrency(item.prices, currency).icon + formatCurrency(item.prices, currency).price}
               </ProductPrice>
-
+              {}
               <Features>
                 {item.attributes.map((attribute) => (attribute.type === 'swatch'
                   ? (

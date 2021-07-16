@@ -179,7 +179,7 @@ class Header extends React.PureComponent {
             </svg>
           </button>
           {cartItems.length > 0
-            && <CartItemsTotal>{cartItems.length}</CartItemsTotal>}
+          && <CartItemsTotal>{cartItems.length}</CartItemsTotal>}
         </CurrencyCart>
         <ModalCart
           active={modalActive}

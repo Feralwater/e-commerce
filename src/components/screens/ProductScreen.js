@@ -99,7 +99,6 @@ class ProductScreen extends React.PureComponent {
                 <Header />
                 <Container>
                   <Div>
-
                     <ImagesContainer>
                       <SmallImagesContainer>
                         {product.gallery.map((img, index) => (
@@ -115,7 +114,6 @@ class ProductScreen extends React.PureComponent {
                       </SmallImagesContainer>
                       <Img src={product.gallery[imageIndex]} alt={match.params.name} />
                     </ImagesContainer>
-
                     <DescriptionContainer>
                       <Name>{product.name}</Name>
                       <ProductDescription>{product.category}</ProductDescription>
@@ -132,6 +130,7 @@ class ProductScreen extends React.PureComponent {
                                 <AttributesContainer>
                                   {attribute.items.map((x) => (
                                     <Span
+                                      inStock={product.inStock}
                                       validate={validate[attribute.name]}
                                       startValidate={startValidate}
                                       active={attributes[attribute.name]}
@@ -157,6 +156,7 @@ class ProductScreen extends React.PureComponent {
                                 <AttributesContainer>
                                   {attribute.items.map((x) => (
                                     <Span
+                                      inStock={product.inStock}
                                       validate={validate[attribute.name]}
                                       startValidate={startValidate}
                                       active={attributes[attribute.name]}
@@ -182,6 +182,7 @@ class ProductScreen extends React.PureComponent {
                         {formatCurrency(product.prices, currency).icon + formatCurrency(product.prices, currency).price}
                       </Currency>
                       <ToCartButton
+                        inStock={product.inStock}
                         onClick={() => {
                           if (Object.keys(attributes).length < product.attributes.length) {
                             this.setValidate2(true);
@@ -190,7 +191,7 @@ class ProductScreen extends React.PureComponent {
                           }
                         }}
                       >
-                        add to cart
+                        {product.inStock ? 'add to cart' : 'out of stock'}
                       </ToCartButton>
                       <Description>
                         <div
@@ -198,6 +199,7 @@ class ProductScreen extends React.PureComponent {
                         />
                       </Description>
                     </DescriptionContainer>
+
                   </Div>
                 </Container>
               </>

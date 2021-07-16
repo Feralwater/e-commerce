@@ -77,7 +77,7 @@ export const ToCartButton = styled.button`
   padding: 1.6rem 3.2rem;
   width: 29.2rem;
   height: 5.2rem;
-  background: #5ECE7B;
+  background: ${(properties) => (properties.inStock ? '#5ECE7B' : '#A6A6A6')};
   color: #ffffff;
   font-weight: 600;
   font-size: 1.6rem;
@@ -86,6 +86,7 @@ export const ToCartButton = styled.button`
   justify-content: center;
   text-transform: uppercase;
   margin: 0 0 4rem 0;
+  pointer-events: ${(properties) => (properties.inStock ? 'all' : 'none')};
 `;
 export const Span = styled.span`
   display: flex;
@@ -95,7 +96,7 @@ export const Span = styled.span`
   justify-content: center;
   align-items: center;
   margin: 0 1.2rem 1rem 0;
-  cursor: pointer;
+  cursor: ${(properties) => (properties.inStock && 'pointer')};
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 1.6rem;
   line-height: 1.8rem;
@@ -105,6 +106,7 @@ export const Span = styled.span`
   background-color: ${(properties) => (!properties.color && properties.value === properties.active && '#000000')};
   border: ${(properties) => (properties.color === properties.active && properties.color ? '2px solid #1D1F22' : '1px solid #1D1F22')};
   box-shadow: ${(properties) => (!properties.validate && properties.startValidate ? '0px 0px .5rem red' : 'none')};
+  pointer-events: ${(properties) => (properties.inStock ? 'all' : 'none')};
 `;
 
 export const AttributesContainer = styled.div`

@@ -22,17 +22,17 @@ class Header extends React.PureComponent {
     };
   }
 
-  componentDidMount() {
-    // document.addEventListener('click', this.handleOutsideClick);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('click', this.handleOutsideClick);
-  }
-
-  handleOutsideClick=() => {
-    this.setState({ currencyActive: false });
-  }
+  // componentDidMount() {
+  //   document.addEventListener('click', this.handleOutsideClick);
+  // }
+  //
+  // componentWillUnmount() {
+  //   document.removeEventListener('click', this.handleOutsideClick);
+  // }
+  //
+  // handleOutsideClick=() => {
+  //   this.setState({ currencyActive: false });
+  // }
 
   setCurrencyActive = (boolean) => {
     this.setState({

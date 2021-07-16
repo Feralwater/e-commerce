@@ -76,6 +76,7 @@ export const Features = styled.div`
 `;
 export const CartImg = styled.div`
   width: 14.1rem;
+  height: 100%;
   position: relative;
   display: flex;
   justify-content: center;
@@ -129,6 +130,6 @@ export const Slider = styled.img`
 
 `;
 export const Carousel = styled.div`
-  // opacity: ${(properties) => (properties.index === properties.current ? '1' : '0.8')};
+    // opacity: ${(properties) => (properties.index === properties.current ? '1' : '0.8')};
   // transition: .5s ease-out;
 `;

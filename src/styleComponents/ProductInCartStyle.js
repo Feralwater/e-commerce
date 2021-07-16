@@ -86,7 +86,7 @@ export const Span = styled.span`
   text-align: center;
   justify-content: center;
   align-items: center;
-  margin: 1rem 1rem 0 0;
+  margin: .5rem 1rem 0 0;
   user-select: none;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 1.4rem;
@@ -98,4 +98,10 @@ export const Span = styled.span`
   background-color: ${(properties) => (properties.color ? `${properties.color}` : '#ffffff')};
   background-color: ${(properties) => (!properties.color && properties.value === properties.active && '#000000')};
   border: ${(properties) => (properties.color === properties.active && properties.color ? '2px solid #1D1F22' : '1px solid #1D1F22')};
+`;
+export const AttributeName = styled.div`
+  font-weight: 300;
+  font-size: 1rem;
+  margin: 1rem 0 0 0;
+  color: #1D1F22;
 `;

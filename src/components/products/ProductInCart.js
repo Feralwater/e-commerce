@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import formatCurrency from '../../utils/formatCurrency';
 import {
+  AttributeName,
   CartImage,
   Counter,
   CounterImageContainer,
@@ -35,41 +36,42 @@ class ProductInCart extends React.PureComponent {
               <ProductPrice>
                 {formatCurrency(item.prices, currency).icon + formatCurrency(item.prices, currency).price}
               </ProductPrice>
-              {}
               <Features>
-                {item.attributes.map((attribute) => (attribute.type === 'swatch'
-                  ? (
-                    (
-                      <div key={Math.random() * 100_000}>
-                        <AttributesContainer>
-                          {attribute.items.map((x) => (
-                            <Span
-                              color={x.value}
-                              key={Math.random() * 100_000}
-                              active={item.params[attribute.name]}
-                            />
-                          ))}
-                        </AttributesContainer>
-                      </div>
+                {item.attributes.map((attribute) => (
+                  attribute.type === 'swatch'
+                    ? (
+                      (
+                        <div key={Math.random() * 100_000}>
+                          <AttributesContainer>
+                            {attribute.items.map((x) => (
+                              <Span
+                                color={x.value}
+                                key={Math.random() * 100_000}
+                                active={item.params[attribute.name]}
+                              />
+                            ))}
+                          </AttributesContainer>
+                        </div>
+                      )
                     )
-                  )
-                  : (
-                    (
-                      <div key={Math.random() * 100_000}>
-                        <AttributesContainer>
-                          {attribute.items.map((x) => (
-                            <Span
-                              key={Math.random() * 100_000}
-                              value={x.value}
-                              active={item.params[attribute.name]}
-                            >
-                              {x.value}
-                            </Span>
-                          ))}
-                        </AttributesContainer>
-                      </div>
-                    )
-                  )))}
+                    : (
+                      (
+                        <div key={Math.random() * 100_000}>
+                          <AttributeName>{attribute.name}</AttributeName>
+                          <AttributesContainer>
+                            {attribute.items.map((x) => (
+                              <Span
+                                key={Math.random() * 100_000}
+                                value={x.value}
+                                active={item.params[attribute.name]}
+                              >
+                                {x.value}
+                              </Span>
+                            ))}
+                          </AttributesContainer>
+                        </div>
+                      )
+                    )))}
               </Features>
 
             </ProductDescription>

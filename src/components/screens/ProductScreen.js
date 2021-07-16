@@ -8,12 +8,9 @@ import {
   Description,
   DescriptionContainer,
   Div,
-  ImagesContainer,
-  Img,
   Name,
   Price,
   ProductDescription,
-  SmallImagesContainer,
   Span,
   ToCartButton,
 } from '../../styleComponents/ProductScreenStyles';
@@ -22,12 +19,12 @@ import Header from '../header/Header';
 import { fetchProducts } from '../../actions/productActions';
 import { addToCart } from '../../actions/cartActions';
 import formatCurrency from '../../utils/formatCurrency';
+import ImageSwitcher from './ImageSwitcher';
 
 class ProductScreen extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      imageIndex: 0,
       attributes: {},
       validate: {},
       startValidate: false,
@@ -50,12 +47,6 @@ class ProductScreen extends React.PureComponent {
         },
       },
     );
-  };
-
-  setSelectedImg = (index) => {
-    this.setState({
-      imageIndex: index,
-    });
   };
 
   setValidate = (name, boolean) => {
@@ -82,7 +73,6 @@ class ProductScreen extends React.PureComponent {
       addToCart,
     } = this.props;
     const {
-      imageIndex,
       validate,
       attributes,
       startValidate,
@@ -99,21 +89,7 @@ class ProductScreen extends React.PureComponent {
                 <Header />
                 <Container>
                   <Div>
-                    <ImagesContainer>
-                      <SmallImagesContainer>
-                        {product.gallery.map((img, index) => (
-                          <img
-                            key={Math.floor(Math.random() * 100_000)}
-                            src={img}
-                            alt={match.params.name}
-                            onClick={() => {
-                              this.setSelectedImg(index);
-                            }}
-                          />
-                        ))}
-                      </SmallImagesContainer>
-                      <Img src={product.gallery[imageIndex]} alt={match.params.name} />
-                    </ImagesContainer>
+                    <ImageSwitcher product={product} match={match} />
                     <DescriptionContainer>
                       <Name>{product.name}</Name>
                       <ProductDescription>{product.category}</ProductDescription>

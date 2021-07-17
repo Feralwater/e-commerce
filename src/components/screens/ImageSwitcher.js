@@ -32,14 +32,17 @@ class ImageSwitcher extends React.PureComponent {
       <ImagesContainer>
         <SmallImagesContainer>
           {product.gallery.map((img, index) => (
-            <div>
+            <div
+              role="tab"
+              tabIndex={index}
+              onClick={() => {
+                this.setSelectedImg(index);
+              }}
+            >
               <img
                 key={Math.floor(Math.random() * 100_000)}
                 src={img}
                 alt={match.params.name}
-                onClick={() => {
-                  this.setSelectedImg(index);
-                }}
               />
             </div>
           ))}

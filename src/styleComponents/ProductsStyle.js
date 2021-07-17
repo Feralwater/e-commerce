@@ -57,6 +57,7 @@ export const A = styled(Link)`
 export const ImgContainer = styled.div`
   width: 35.4rem;
   height: 33rem;
+
   &::before {
     width: 35.4rem;
     height: 33rem;

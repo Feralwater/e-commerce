@@ -59,7 +59,7 @@ class Products extends React.PureComponent {
                       <A to={`/categories/${activeCategory || 'all'}/${product.name}`}>
                         <span>out of stock</span>
                         <ImgContainer>
-                          <Img src={product.gallery[0]} alt={product.title} />
+                          <Img src={product.gallery[0]} alt={product.title} data-attr="background" />
                         </ImgContainer>
                         <ProductName>
                           {product.name}

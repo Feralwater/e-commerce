@@ -64,6 +64,20 @@ export const CurrencyList = styled.ul`
       padding-bottom: 2rem;
     }
   }
+
+  &::-webkit-scrollbar {
+    width: .3rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #5ece7b;
+    border-radius: 1rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(168, 172, 176, 0.19);
+    border-radius: 1rem;
+  }
 `;
 export const Currency = styled.div`
   display: flex;

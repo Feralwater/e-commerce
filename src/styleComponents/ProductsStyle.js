@@ -57,11 +57,18 @@ export const A = styled(Link)`
 export const ImgContainer = styled.div`
   width: 35.4rem;
   height: 33rem;
+  &::before {
+    width: 35.4rem;
+    height: 33rem;
+    position: absolute;
+    background-color: rgba(128, 128, 128, 0.075);
+    content: attr(data-attr);
+  }
 `;
 export const Img = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 `;
 export const ProductName = styled.p`
   font-weight: 300;

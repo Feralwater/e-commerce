@@ -9,7 +9,7 @@ export const Modal = styled.div`
   left: 0;
   bottom: 0;
     //opacity: ${(properties) => (properties.active ? '1' : '0')};
-    display: ${(properties) => !properties.active && 'none'};
+  display: ${(properties) => !properties.active && 'none'};
   transition: .5s;
   pointer-events: all;
 `;
@@ -31,6 +31,10 @@ export const Content = styled.div`
   flex-direction: column;
   overflow-y: auto;
   overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
 `;
 
 export const ViewButton = styled(Link)`
@@ -73,7 +77,7 @@ export const Total = styled.div`
   font-size: 1.6rem;
   color: #1D1F22;
   font-weight: 700;
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 `;
 export const TotalTitle = styled.p`
   font-family: 'Roboto', sans-serif;

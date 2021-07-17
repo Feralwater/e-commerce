@@ -45,6 +45,13 @@ class Header extends React.PureComponent {
   };
 
   render() {
+    const a = {
+      GBP: '£ GBP',
+      AUD: '$ AUD',
+      JPY: '¥ JPY',
+      RUB: '₽ RUB',
+      USD: '$ USD',
+    };
     const {
       currencyActive,
       modalActive,
@@ -70,41 +77,18 @@ class Header extends React.PureComponent {
             {icon}
           </Currency>
           <CurrencyList active={currencyActive}>
-            <li onClick={() => {
-              changeCurrency('USD');
-              this.setCurrencyActive(!currencyActive);
-            }}
-            >
-              $ USD
-            </li>
-            <li onClick={() => {
-              changeCurrency('GBP');
-              this.setCurrencyActive(!currencyActive);
-            }}
-            >
-              £ GBP
-            </li>
-            <li onClick={() => {
-              changeCurrency('AUD');
-              this.setCurrencyActive(!currencyActive);
-            }}
-            >
-              $ AUD
-            </li>
-            <li onClick={() => {
-              changeCurrency('JPY');
-              this.setCurrencyActive(!currencyActive);
-            }}
-            >
-              ¥ JPY
-            </li>
-            <li onClick={() => {
-              changeCurrency('RUB');
-              this.setCurrencyActive(!currencyActive);
-            }}
-            >
-              ₽ RUB
-            </li>
+            {Object.entries(a)
+              .map(([key, value]) => (
+                <li
+                  key={Math.random() * 100_000}
+                  onClick={() => {
+                    changeCurrency(key);
+                    this.setCurrencyActive(!currencyActive);
+                  }}
+                >
+                  {value}
+                </li>
+              ))}
           </CurrencyList>
           <button
             type="button"

@@ -62,7 +62,7 @@ export const ImgContainer = styled.div`
     height: 33rem;
     position: absolute;
     background-color: rgba(128, 128, 128, 0.075);
-    content: attr(data-attr);
+    content: '';
   }
 `;
 export const Img = styled.img`

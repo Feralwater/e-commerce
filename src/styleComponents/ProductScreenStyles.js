@@ -4,34 +4,59 @@ export const Div = styled.div`
   display: flex;
   margin: 16rem 0 0 0;
 `;
+export const MainImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  //align-items: center;
+  margin: 0 3rem;
+`;
 export const Img = styled.img`
   display: block;
-  cursor: pointer;
   width: 61rem;
   height: 51.1rem;
   object-fit: contain;
-  margin: 0 3rem;
 `;
 export const ImagesContainer = styled.div`
-  max-width: 70rem;
+  max-width: 73rem;
   display: flex;
+  position: relative;
+
+  &::before {
+    width: 61rem;
+    height: 51.1rem;
+    position: absolute;
+    right: 0;
+    background-color: rgba(128, 128, 128, 0.075);
+    content: '';
+  }
 `;
 export const SmallImagesContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  //justify-content: space-between;
+
+  & div {
+    cursor: pointer;
+
+    &::before {
+      width: 8rem;
+      height: 8rem;
+      position: absolute;
+      background-color: rgba(128, 128, 128, 0.075);
+      content: '';
+    }
+  }
 
   & img {
     display: block;
-    cursor: pointer;
     width: 8rem;
     height: 8rem;
-    object-fit: cover;
+    object-fit: contain;
     margin-bottom: 3rem;
   }
 `;
 export const DescriptionContainer = styled.div`
-  margin: 0 0 0 13rem;
+  margin: 0 0 0 10rem;
   color: #1D1F22;
 `;
 export const Name = styled.div`

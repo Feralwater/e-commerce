@@ -33,6 +33,7 @@ class ImageSwitcher extends React.PureComponent {
         <SmallImagesContainer>
           {product.gallery.map((img, index) => (
             <div
+              key={Math.floor(Math.random() * 100_000)}
               role="tab"
               tabIndex={index}
               onClick={() => {
@@ -40,7 +41,6 @@ class ImageSwitcher extends React.PureComponent {
               }}
             >
               <img
-                key={Math.floor(Math.random() * 100_000)}
                 src={img}
                 alt={match.params.name}
               />

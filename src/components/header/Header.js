@@ -24,6 +24,23 @@ class Header extends React.PureComponent {
     };
   }
 
+  componentDidMount() {
+    document.addEventListener('click', this.outsideCurrencyClose, true);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.outsideCurrencyClose);
+  }
+
+  outsideCurrencyClose = (e) => {
+    const el = e.target.closest('#currencyList');
+    if (!el) {
+      this.setState({
+        currencyActive: false,
+      });
+    }
+  };
+
   setCurrencyActive = (boolean) => {
     this.setState({
       currencyActive: boolean,
@@ -69,14 +86,16 @@ class Header extends React.PureComponent {
         <LogoContainer>
           <Logo />
         </LogoContainer>
-        <CurrencyCart>
+        <CurrencyCart id="currencyList">
           <Currency
             active={currencyActive}
             onClick={() => this.setCurrencyActive(!currencyActive)}
           >
             {icon}
           </Currency>
-          <CurrencyList active={currencyActive}>
+          <CurrencyList
+            active={currencyActive}
+          >
             {Object.entries(a)
               .map(([key, value]) => (
                 <li

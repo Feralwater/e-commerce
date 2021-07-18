@@ -28,7 +28,7 @@ class ChooseProductFeaturesDisplay extends React.PureComponent {
             : (
               (
                 <AttributeName key={Math.random() * 100_000}>
-                  <div>{attribute.name}</div>
+                  <div>{`${attribute.name}:`}</div>
                   <AttributesContainer>
                     {attribute.items.map((x) => (
                       <Span

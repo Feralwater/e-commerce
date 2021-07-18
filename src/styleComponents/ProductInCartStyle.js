@@ -37,7 +37,7 @@ export const ProductName = styled.p`
   display: flex;
   //align-items: center;
   color: #1D1F22;
-  margin: 0 ;
+  margin: 0;
 `;
 export const ProductPrice = styled.p`
   font-weight: 500;
@@ -73,7 +73,6 @@ export const Counter = styled.div`
 export const CounterImageContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  //width: 14rem;
   flex: 0 0 14rem;
 `;
 
@@ -91,17 +90,14 @@ export const Span = styled.span`
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 1.4rem;
   line-height: 160%;
-  // color: #292929;
-  // background-color: ${(properties) => (properties.color ? `${properties.color}` : '#ffffff')};
-  // border: ${(properties) => ((properties.color === properties.active && properties.color) || (properties.value === properties.active && properties.value) ? '2px solid #1D1F22' : '1px solid #1D1F22')};
   color: ${(properties) => (properties.value === properties.active ? '#ffffff' : '#292929')};
   background-color: ${(properties) => (properties.color ? `${properties.color}` : '#ffffff')};
   background-color: ${(properties) => (!properties.color && properties.value === properties.active && '#000000')};
   border: ${(properties) => (properties.color === properties.active && properties.color ? '2px solid #1D1F22' : '1px solid #1D1F22')};
 `;
 export const AttributeName = styled.div`
-  font-weight: 300;
-  font-size: 1rem;
+  font-weight: 700;
+  font-size: 1.4rem;
   margin: 1rem 0 0 0;
   color: #1D1F22;
 `;

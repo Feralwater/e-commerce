@@ -20,8 +20,15 @@ import { ReactComponent as Cart } from './svgImages/cart.svg';
 
 class Products extends React.PureComponent {
   componentDidMount() {
-    const { fetchProducts } = this.props;
-    fetchProducts();
+    const { fetchProducts, activeCategory } = this.props;
+    fetchProducts(activeCategory || 'all');
+  }
+
+  componentDidUpdate(prevProps) {
+    const { fetchProducts, activeCategory } = this.props;
+    if (prevProps.activeCategory !== activeCategory) {
+      fetchProducts(activeCategory || 'all');
+    }
   }
 
   addToCartFromPLP = (item, history, addToCart, activeCategory) => {
@@ -30,11 +37,6 @@ class Products extends React.PureComponent {
     } else {
       history.push(`/categories/${activeCategory || 'all'}/${item.name}`);
     }
-  };
-
-  filter = (item) => {
-    const { activeCategory } = this.props;
-    return (item.category === activeCategory || !activeCategory ? 1 : 0);
   };
 
   render() {
@@ -53,33 +55,32 @@ class Products extends React.PureComponent {
             ? (<div>Loading...</div>)
             : (
               <Ul>
-                {products.filter(this.filter)
-                  .map((product) => (
-                    <Li inStock={product.inStock} key={product.name}>
-                      <A to={`/categories/${activeCategory || 'all'}/${product.name}`}>
-                        <span>out of stock</span>
-                        <ImgContainer>
-                          <Img src={product.gallery[0]} alt={product.title} />
-                        </ImgContainer>
-                        <ProductName>
-                          {product.name}
-                        </ProductName>
-                        <Currency>
-                          {formatCurrency(product.prices, currency).icon + formatCurrency(product.prices, currency).price}
-                        </Currency>
-                      </A>
-                      <div>
-                        <CartButton
-                          inStock={product.inStock}
-                          onClick={() => {
-                            this.addToCartFromPLP(product, history, addToCart, activeCategory);
-                          }}
-                        >
-                          <Cart />
-                        </CartButton>
-                      </div>
-                    </Li>
-                  ))}
+                {products.map((product) => (
+                  <Li inStock={product.inStock} key={product.name}>
+                    <A to={`/categories/${activeCategory || 'all'}/${product.name}`}>
+                      <span>out of stock</span>
+                      <ImgContainer>
+                        <Img src={product.gallery[0]} alt={product.title} />
+                      </ImgContainer>
+                      <ProductName>
+                        {product.name}
+                      </ProductName>
+                      <Currency>
+                        {formatCurrency(product.prices, currency).icon + formatCurrency(product.prices, currency).price}
+                      </Currency>
+                    </A>
+                    <div>
+                      <CartButton
+                        inStock={product.inStock}
+                        onClick={() => {
+                          this.addToCartFromPLP(product, history, addToCart, activeCategory);
+                        }}
+                      >
+                        <Cart />
+                      </CartButton>
+                    </div>
+                  </Li>
+                ))}
               </Ul>
             )
         }

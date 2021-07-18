@@ -28,10 +28,6 @@ class Header extends React.PureComponent {
     document.addEventListener('click', this.outsideCurrencyClose, true);
   }
 
-  componentWillUnmount() {
-    document.removeEventListener('click', this.outsideCurrencyClose);
-  }
-
   outsideCurrencyClose = (e) => {
     const el = e.target.closest('#currencyList');
     if (!el) {
@@ -63,11 +59,11 @@ class Header extends React.PureComponent {
 
   render() {
     const a = {
+      USD: '$ USD',
       GBP: '£ GBP',
       AUD: '$ AUD',
       JPY: '¥ JPY',
       RUB: '₽ RUB',
-      USD: '$ USD',
     };
     const {
       currencyActive,
@@ -97,15 +93,15 @@ class Header extends React.PureComponent {
             active={currencyActive}
           >
             {Object.entries(a)
-              .map(([key, value]) => (
+              .map(([currency, currencyValue]) => (
                 <li
                   key={Math.random() * 100_000}
                   onClick={() => {
-                    changeCurrency(key);
+                    changeCurrency(currency);
                     this.setCurrencyActive(!currencyActive);
                   }}
                 >
-                  {value}
+                  {currencyValue}
                 </li>
               ))}
           </CurrencyList>

@@ -29,8 +29,8 @@ class ProductScreen extends React.PureComponent {
   }
 
   componentDidMount() {
-    const { fetchProducts } = this.props;
-    fetchProducts();
+    const { fetchProducts, activeCategory } = this.props;
+    fetchProducts(activeCategory || 'all');
   }
 
   setSelectAttribute = (attribute, name) => {
@@ -124,10 +124,11 @@ class ProductScreen extends React.PureComponent {
   }
 }
 
-export default connect((state) => ({
+export default connect((state, ownProperties) => ({
   products: state.products.items,
   cartItems: state.cart.cartItems,
   currency: state.currency.currency,
+  activeCategory: ownProperties?.match?.params?.categoryName,
 }),
 {
   fetchProducts,

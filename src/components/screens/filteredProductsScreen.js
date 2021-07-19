@@ -7,12 +7,10 @@ import Products from '../products/Products';
 class FilteredProductsScreen extends React.PureComponent {
   render() {
     return (
-      <div>
-        <Container>
-          <Header />
-          <Products />
-        </Container>
-      </div>
+      <Container>
+        <Header />
+        <Products />
+      </Container>
     );
   }
 }

@@ -18,10 +18,8 @@ ReactDOM.render(
       <Provider store={store}>
         <BrowserRouter>
           <GlobalStyles />
-
           <App />
         </BrowserRouter>
-
       </Provider>
     </ApolloProvider>
   </React.StrictMode>,

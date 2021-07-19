@@ -7,6 +7,7 @@ export const Ul = styled.ul`
   list-style-type: none;
   padding-inline-start: 0;
 `;
+
 export const Li = styled.li`
   display: flex;
   width: 100%;
@@ -17,28 +18,48 @@ export const Li = styled.li`
   opacity: ${(properties) => (properties.inStock ? '1' : '0.5')};
   pointer-events: ${(properties) => (properties.inStock ? 'all' : 'none')};
 `;
-export const CartImage = styled.div`
+
+export const CartImageWrapper = styled.div`
   width: 10.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
+
+export const CartImage = styled.div`
+  height: 13.7rem;
+
+  &::before {
+    width: 10.5rem;
+    height: 13.7rem;
+    position: absolute;
+    right: 0;
+    background-color: rgba(128, 128, 128, 0.075);
+    content: '';
+  }
+`;
+
 export const Img = styled.img`
   width: 100%;
   height: 100%;
   object-fit: contain;
 `;
+
 export const ProductDescription = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 `;
+
 export const ProductName = styled.p`
   font-weight: 300;
   font-size: 1.6rem;
   line-height: 160%;
   display: flex;
-  //align-items: center;
   color: #1D1F22;
   margin: 0;
 `;
+
 export const ProductPrice = styled.p`
   font-weight: 500;
   font-size: 1.6rem;
@@ -48,6 +69,7 @@ export const ProductPrice = styled.p`
   color: #1D1F22;
   margin: 0;
 `;
+
 export const Counter = styled.div`
   display: flex;
   flex-direction: column;
@@ -70,6 +92,7 @@ export const Counter = styled.div`
     pointer-events: ${(properties) => !properties.inStock && 'none'};
   }
 `;
+
 export const CounterImageContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -95,6 +118,7 @@ export const Span = styled.span`
   background-color: ${(properties) => (!properties.color && properties.value === properties.active && '#000000')};
   border: ${(properties) => (properties.color === properties.active && properties.color ? '2px solid #1D1F22' : '1px solid #1D1F22')};
 `;
+
 export const AttributeName = styled.div`
   font-weight: 700;
   font-size: 1.4rem;

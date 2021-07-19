@@ -15,6 +15,7 @@ export const HeaderContainer = styled.header`
   margin: 0 auto;
   padding: 0 1.5rem;
 `;
+
 export const CurrencyCart = styled.div`
   display: flex;
   flex-wrap: nowrap;
@@ -23,6 +24,7 @@ export const CurrencyCart = styled.div`
   flex: 0 1 50%;
   justify-content: flex-end;
 `;
+
 export const CartItemsTotal = styled.div`
   position: absolute;
   right: -1rem;
@@ -39,6 +41,7 @@ export const CartItemsTotal = styled.div`
   width: 2rem;
   height: 2rem;
 `;
+
 export const CurrencyList = styled.ul`
   display: ${(properties) => !properties.active && 'none'};
   list-style-type: none;
@@ -79,6 +82,7 @@ export const CurrencyList = styled.ul`
     border-radius: 1rem;
   }
 `;
+
 export const Currency = styled.div`
   display: flex;
   align-items: center;
@@ -102,9 +106,11 @@ export const Currency = styled.div`
     margin: 0 0 0 1rem;
   }
 `;
+
 export const NavbarContainer = styled.div`
   flex: 0 1 50%;
 `;
+
 export const LogoContainer = styled.div`
   padding-top: 1rem;
 `;

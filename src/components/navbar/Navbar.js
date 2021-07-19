@@ -13,21 +13,19 @@ class Navbar extends React.PureComponent {
   render() {
     const { activeCategory } = this.props;
     return (
-      <>
-        <Nav>
-          <NavLink to="/" active={activeCategory}>all</NavLink>
-          {categories.map((item) => (
-            <NavLink
-              to={`/categories/${item}`}
-              key={Math.random() * 100_000}
-              item={item}
-              active={activeCategory}
-            >
-              {item}
-            </NavLink>
-          ))}
-        </Nav>
-      </>
+      <Nav>
+        <NavLink to="/" active={activeCategory}>all</NavLink>
+        {categories.map((item) => (
+          <NavLink
+            to={`/categories/${item}`}
+            key={Math.random() * 100_000}
+            item={item}
+            active={activeCategory}
+          >
+            {item}
+          </NavLink>
+        ))}
+      </Nav>
     );
   }
 }

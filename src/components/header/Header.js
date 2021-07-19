@@ -15,6 +15,13 @@ import { changeCurrency } from '../../actions/currencyAction';
 import { ReactComponent as Logo } from './svgImages/logo.svg';
 import { ReactComponent as EmptyCart } from './svgImages/emptyCart.svg';
 
+const a = {
+  USD: '$ USD',
+  GBP: '£ GBP',
+  AUD: '$ AUD',
+  JPY: '¥ JPY',
+  RUB: '₽ RUB',
+};
 class Header extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -26,6 +33,11 @@ class Header extends React.PureComponent {
 
   componentDidMount() {
     document.addEventListener('click', this.outsideCurrencyClose, true);
+  }
+
+  componentWillUnmount() {
+    window.onscroll = () => {
+    };
   }
 
   outsideCurrencyClose = (e) => {
@@ -58,13 +70,6 @@ class Header extends React.PureComponent {
   };
 
   render() {
-    const a = {
-      USD: '$ USD',
-      GBP: '£ GBP',
-      AUD: '$ AUD',
-      JPY: '¥ JPY',
-      RUB: '₽ RUB',
-    };
     const {
       currencyActive,
       modalActive,

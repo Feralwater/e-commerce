@@ -18,7 +18,6 @@ class DisplayAndValidateProductAttributes extends React.PureComponent {
     } = this.props;
     return (
       <Description>
-
         {product.attributes.map((attribute) => (attribute.type === 'swatch'
           ? (
             (

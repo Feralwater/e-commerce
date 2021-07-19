@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import formatCurrency from '../../utils/formatCurrency';
 import {
-  CartImage,
+  CartImage, CartImageWrapper,
   Counter,
   CounterImageContainer,
   Img,
@@ -44,11 +44,11 @@ class ProductInCart extends React.PureComponent {
                 <div>{item.count}</div>
                 <p onClick={() => counterDecrement(item)}>-</p>
               </Counter>
-
-              <CartImage>
-                <Img src={item.gallery[0]} alt={item.name} />
-              </CartImage>
-
+              <CartImageWrapper>
+                <CartImage>
+                  <Img src={item.gallery[0]} alt={item.name} />
+                </CartImage>
+              </CartImageWrapper>
             </CounterImageContainer>
           </Li>
         ))}

@@ -19,6 +19,7 @@ export const CartButton = styled.button`
   bottom: 6.8rem;
   filter: drop-shadow(0px 4px 11px rgba(29, 31, 34, 0.1));
 `;
+
 export const Li = styled.li`
   position: relative;
   opacity: ${(properties) => (properties.inStock ? '1' : '0.5')};
@@ -46,14 +47,15 @@ export const Li = styled.li`
     height: 100%;
     color: #8D8F9A;
   }
-
 `;
+
 export const A = styled(Link)`
   display: flex;
   flex-direction: column;
   text-decoration: none;
   padding: 1rem;
 `;
+
 export const ImgContainer = styled.div`
   width: 35.4rem;
   height: 33rem;
@@ -66,11 +68,13 @@ export const ImgContainer = styled.div`
     content: '';
   }
 `;
+
 export const Img = styled.img`
   width: 100%;
   height: 100%;
   object-fit: contain;
 `;
+
 export const ProductName = styled.p`
   font-weight: 300;
   font-size: 1.8rem;
@@ -78,6 +82,7 @@ export const ProductName = styled.p`
   margin: 2.4rem 0 0 0;
   color: #1D1F22;
 `;
+
 export const Currency = styled.div`
   font-weight: 500;
   font-size: 1.8rem;
@@ -85,6 +90,7 @@ export const Currency = styled.div`
   color: #1D1F22;
   margin: 0;
 `;
+
 export const Category = styled.div`
   margin: 16rem 0 11rem 0;
   font-size: 4.2rem;

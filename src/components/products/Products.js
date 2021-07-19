@@ -48,7 +48,7 @@ class Products extends React.PureComponent {
       addToCart,
     } = this.props;
     return (
-      <div>
+      <>
         <Category>{activeCategory || 'all'}</Category>
         {
           !products
@@ -84,7 +84,7 @@ class Products extends React.PureComponent {
               </Ul>
             )
         }
-      </div>
+      </>
     );
   }
 }

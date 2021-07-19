@@ -13,22 +13,26 @@ export const CartTitle = styled.div`
   color: #1D1F22;
   margin: 16rem 0 6rem 0;
 `;
+
 export const CardContainer = styled.li`
   opacity: ${(properties) => (properties.inStock ? '1' : '0.5')};
   pointer-events: ${(properties) => (properties.inStock ? 'all' : 'none')};
 `;
+
 export const ItemName = styled.div`
   font-weight: 600;
   font-size: 3rem;
   line-height: 2.7rem;
   margin: 0 0 1.6rem 0;
 `;
+
 export const ItemDescription = styled.div`
   font-weight: 300;
   font-size: 3rem;
   line-height: 1.5rem;
   margin: 0 0 1.2rem 0;
 `;
+
 export const ItemPrice = styled.div`
   font-weight: 600;
   font-size: 2.4rem;
@@ -64,16 +68,19 @@ export const CounterContainer = styled.div`
     pointer-events: ${(properties) => !properties.inStock && 'none'};
   }
 `;
+
 export const RightElementsContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 20rem;
 `;
+
 export const Features = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
 `;
+
 export const CartImg = styled.div`
   width: 14.1rem;
   height: 100%;
@@ -81,6 +88,15 @@ export const CartImg = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &::before {
+    width: 14.1rem;
+    height: 18.5rem;
+    position: absolute;
+    right: 0;
+    background-color: rgba(128, 128, 128, 0.075);
+    content: '';
+  }
 `;
 
 export const PrevArrow = styled.span`
@@ -103,6 +119,7 @@ export const PrevArrow = styled.span`
     user-select: none;
   }
 `;
+
 export const NextArrow = styled.span`
   position: absolute;
   top: 50%;
@@ -123,13 +140,14 @@ export const NextArrow = styled.span`
     user-select: none;
   }
 `;
+
 export const Slider = styled.img`
   height: 100%;
   width: 100%;
   object-fit: cover;
 
 `;
+
 export const Carousel = styled.div`
-    // opacity: ${(properties) => (properties.index === properties.current ? '1' : '0.8')};
-  // transition: .5s ease-out;
+
 `;

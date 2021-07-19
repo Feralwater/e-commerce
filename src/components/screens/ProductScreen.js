@@ -29,7 +29,10 @@ class ProductScreen extends React.PureComponent {
   }
 
   componentDidMount() {
-    const { fetchProducts, activeCategory } = this.props;
+    const {
+      fetchProducts,
+      activeCategory,
+    } = this.props;
     fetchProducts(activeCategory || 'all');
   }
 
@@ -75,52 +78,45 @@ class ProductScreen extends React.PureComponent {
     } = this.state;
     const product = products?.find((x) => x.name === match.params.name);
 
-    return (
-      <div>
-        {
-          !products
-            ? (<div>Loading...</div>)
-            : (
-              <>
-                <Header />
-                <Container>
-                  <Div>
-                    <ImageSwitcher product={product} match={match} />
-                    <DescriptionContainer>
-                      <Name>{product.name}</Name>
-                      <ProductDescription>{product.category}</ProductDescription>
-                      <DisplayAndValidateProductAttributes
-                        product={product}
-                        validate={validate}
-                        startValidate={startValidate}
-                        attributes={attributes}
-                        setSelectAttribute={this.setSelectAttribute}
-                        setValidate={this.setValidate}
-                      />
-                      <Price>price:</Price>
-                      <Currency>
-                        {' '}
-                        {formatCurrency(product.prices, currency).icon + formatCurrency(product.prices, currency).price}
-                      </Currency>
-                      <CartButton
-                        product={product}
-                        attributes={attributes}
-                        setValidate2={this.setValidate2}
-                      />
-                      <Description>
-                        <div
-                          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(product.description) }}
-                        />
-                      </Description>
-                    </DescriptionContainer>
+    return !products ? <div>Loading...</div>
+      : (
+        <>
+          <Header />
+          <Container>
+            <Div>
+              <ImageSwitcher product={product} match={match} />
+              <DescriptionContainer>
+                <Name>{product.name}</Name>
+                <ProductDescription>{product.category}</ProductDescription>
+                <DisplayAndValidateProductAttributes
+                  product={product}
+                  validate={validate}
+                  startValidate={startValidate}
+                  attributes={attributes}
+                  setSelectAttribute={this.setSelectAttribute}
+                  setValidate={this.setValidate}
+                />
+                <Price>price:</Price>
+                <Currency>
+                  {' '}
+                  {formatCurrency(product.prices, currency).icon + formatCurrency(product.prices, currency).price}
+                </Currency>
+                <CartButton
+                  product={product}
+                  attributes={attributes}
+                  setValidate2={this.setValidate2}
+                />
+                <Description>
+                  <div
+                    dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(product.description) }}
+                  />
+                </Description>
+              </DescriptionContainer>
 
-                  </Div>
-                </Container>
-              </>
-            )
-        }
-      </div>
-    );
+            </Div>
+          </Container>
+        </>
+      );
   }
 }
 

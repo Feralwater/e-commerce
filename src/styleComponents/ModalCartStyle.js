@@ -8,7 +8,6 @@ export const Modal = styled.div`
   right: 0;
   left: 0;
   bottom: 0;
-    //opacity: ${(properties) => (properties.active ? '1' : '0')};
   display: ${(properties) => !properties.active && 'none'};
   transition: .5s;
   pointer-events: all;
@@ -19,6 +18,7 @@ export const ContentContainer = styled.div`
   max-width: 1316px;
   margin: 0 auto;
 `;
+
 export const Content = styled.div`
   padding: .8rem 1.6rem 2rem 1.3rem;
   background-color: #ffffff;
@@ -71,6 +71,7 @@ export const Buttons = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
 export const Total = styled.div`
   display: flex;
   justify-content: space-between;
@@ -79,6 +80,7 @@ export const Total = styled.div`
   font-weight: 700;
   margin-bottom: 2rem;
 `;
+
 export const TotalTitle = styled.p`
   font-family: 'Roboto', sans-serif;
 `;
@@ -87,6 +89,7 @@ export const CartBottomWrapper = styled.div`
   margin-top: auto;
   justify-content: space-between;
 `;
+
 export const Title = styled.div`
   font-size: 1.6rem;
   line-height: 160%;

@@ -4,18 +4,21 @@ export const Div = styled.div`
   display: flex;
   margin: 16rem 0 0 0;
 `;
+
 export const MainImageContainer = styled.div`
   display: flex;
   justify-content: center;
   //align-items: center;
   margin: 0 3rem;
 `;
+
 export const Img = styled.img`
   display: block;
   width: 61rem;
   height: 51.1rem;
   object-fit: contain;
 `;
+
 export const ImagesContainer = styled.div`
   max-width: 73rem;
   display: flex;
@@ -30,10 +33,10 @@ export const ImagesContainer = styled.div`
     content: '';
   }
 `;
+
 export const SmallImagesContainer = styled.div`
   display: flex;
   flex-direction: column;
-  //justify-content: space-between;
 
   & div {
     cursor: pointer;
@@ -55,21 +58,25 @@ export const SmallImagesContainer = styled.div`
     margin-bottom: 3rem;
   }
 `;
+
 export const DescriptionContainer = styled.div`
   margin: 0 0 0 10rem;
   color: #1D1F22;
 `;
+
 export const Name = styled.div`
   font-weight: 600;
   font-size: 3rem;
   line-height: 27px;
   margin: 0 0 1.6rem 0;
 `;
+
 export const ProductDescription = styled.div`
   font-size: 3rem;
   line-height: 27px;
   margin: 0 0 4.6rem 0;
 `;
+
 export const Attributes = styled.div`
   font-weight: 700;
   font-size: 1.8rem;
@@ -78,6 +85,7 @@ export const Attributes = styled.div`
   text-transform: uppercase;
   font-family: "Roboto", sans-serif;
 `;
+
 export const Price = styled.div`
   margin: 3rem 0 2rem 0;
   font-weight: 700;
@@ -86,17 +94,20 @@ export const Price = styled.div`
   text-transform: uppercase;
   font-family: "Roboto", sans-serif;
 `;
+
 export const Currency = styled.div`
   font-weight: 600;
   font-size: 2.4rem;
   line-height: 1.8rem;
   margin: 0 0 3.5rem 0;
 `;
+
 export const Description = styled.div`
   font-size: 1.6rem;
   line-height: 160%;
   font-family: "Roboto", sans-serif;
 `;
+
 export const ToCartButton = styled.button`
   display: flex;
   padding: 1.6rem 3.2rem;
@@ -113,6 +124,7 @@ export const ToCartButton = styled.button`
   margin: 0 0 4rem 0;
   pointer-events: ${(properties) => (properties.inStock ? 'all' : 'none')};
 `;
+
 export const Span = styled.span`
   display: flex;
   width: 6.1rem;

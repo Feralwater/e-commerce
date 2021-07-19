@@ -11,7 +11,7 @@ class Cart extends React.PureComponent {
   render() {
     const { cartItems } = this.props;
     return (
-      <div>
+      <>
         <Header />
         <Container>
           <Wrapper>
@@ -25,7 +25,7 @@ class Cart extends React.PureComponent {
             </Ul>
           </Wrapper>
         </Container>
-      </div>
+      </>
     );
   }
 }

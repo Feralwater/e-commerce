@@ -1,19 +1,28 @@
 import styled from 'styled-components';
 
-export const HeaderContainer = styled.header`
+export const HeaderWrapper = styled.header`
+  background-color: #ffffff;
+  height: 8rem;
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
-  background-color: #ffffff;
+  z-index: 1000;
+`;
+
+export const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 8rem;
-  z-index: 1000;
   max-width: 1238px;
   margin: 0 auto;
   padding: 0 1.5rem;
+`;
+
+export const CurrencyCartContainer = styled.div`
+  display: flex;
+  flex: 0 1 50%;
+  justify-content: flex-end;
 `;
 
 export const CurrencyCart = styled.div`
@@ -21,8 +30,6 @@ export const CurrencyCart = styled.div`
   flex-wrap: nowrap;
   align-items: center;
   position: relative;
-  flex: 0 1 50%;
-  justify-content: flex-end;
 `;
 
 export const CartItemsTotal = styled.div`

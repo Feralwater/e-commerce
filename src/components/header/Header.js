@@ -4,9 +4,10 @@ import Navbar from '../navbar/Navbar';
 import {
   CartItemsTotal,
   Currency,
-  CurrencyCart,
+  CurrencyCart, CurrencyCartContainer,
   CurrencyList,
   HeaderContainer,
+  HeaderWrapper,
   LogoContainer,
   NavbarContainer,
 } from '../../styleComponents/HeaderStyles';
@@ -22,6 +23,7 @@ const a = {
   JPY: '¥ JPY',
   RUB: '₽ RUB',
 };
+
 class Header extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -80,53 +82,66 @@ class Header extends React.PureComponent {
       cartItems,
     } = this.props;
     return (
-      <HeaderContainer>
-        <NavbarContainer>
-          <Navbar />
-        </NavbarContainer>
-        <LogoContainer>
-          <Logo />
-        </LogoContainer>
-        <CurrencyCart id="currencyList">
-          <Currency
-            active={currencyActive}
-            onClick={() => this.setCurrencyActive(!currencyActive)}
-          >
-            {icon}
-          </Currency>
-          <CurrencyList
-            active={currencyActive}
-          >
-            {Object.entries(a)
-              .map(([currency, currencyValue]) => (
-                <li
-                  key={Math.random() * 100_000}
-                  onClick={() => {
-                    changeCurrency(currency);
-                    this.setCurrencyActive(!currencyActive);
-                  }}
-                >
-                  {currencyValue}
-                </li>
-              ))}
-          </CurrencyList>
-          <button
-            type="button"
-            onClick={() => {
-              this.disableScroll();
-              this.setModalActive(true);
-            }}
-          >
-            <EmptyCart />
-          </button>
-          {cartItems.length > 0
-          && <CartItemsTotal>{cartItems.reduce((total, current) => total + current.count, 0)}</CartItemsTotal>}
-        </CurrencyCart>
-        <ModalCart
-          active={modalActive}
-          setModalActive={this.setModalActive}
-        />
-      </HeaderContainer>
+      <HeaderWrapper
+        onClick={() => {
+          if (modalActive) {
+            this.setModalActive(false);
+          }
+        }}
+      >
+        <HeaderContainer>
+          <NavbarContainer>
+            <Navbar />
+          </NavbarContainer>
+          <LogoContainer>
+            <Logo />
+          </LogoContainer>
+          <CurrencyCartContainer>
+            <CurrencyCart id="currencyList">
+              <Currency
+                active={modalActive ? false : currencyActive}
+                onClick={() => {
+                  this.setModalActive(false);
+                  this.setCurrencyActive(!currencyActive);
+                }}
+              >
+                {icon}
+              </Currency>
+              <CurrencyList
+                active={modalActive ? false : currencyActive}
+              >
+                {Object.entries(a)
+                  .map(([currency, currencyValue]) => (
+                    <li
+                      key={Math.random() * 100_000}
+                      onClick={() => {
+                        changeCurrency(currency);
+                        this.setCurrencyActive(!currencyActive);
+                      }}
+                    >
+                      {currencyValue}
+                    </li>
+                  ))}
+              </CurrencyList>
+              <button
+                type="button"
+                onClick={() => {
+                  this.disableScroll();
+                  this.setModalActive(true);
+                }}
+              >
+                <EmptyCart />
+              </button>
+              {cartItems.length > 0
+              && <CartItemsTotal>{cartItems.reduce((total, current) => total + current.count, 0)}</CartItemsTotal>}
+            </CurrencyCart>
+          </CurrencyCartContainer>
+          <ModalCart
+            active={modalActive}
+            setModalActive={this.setModalActive}
+          />
+        </HeaderContainer>
+      </HeaderWrapper>
     );
   }
 }

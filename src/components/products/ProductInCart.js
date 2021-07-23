@@ -16,6 +16,31 @@ import { addToCart, counterDecrement, counterIncrement } from '../../actions/car
 import ChooseFeaturesInCartDisplay from './ChooseFeauturesInCartDisplay';
 
 class ProductInCart extends React.PureComponent {
+  getItem=(item, currency, counterIncrement, counterDecrement) => (
+    <Li inStock={item.inStock} key={Math.random() * 100_000}>
+      <ProductDescription>
+        <ProductName>{item.name}</ProductName>
+        <ProductName>{item.category}</ProductName>
+        <ProductPrice>
+          {formatCurrency(item.prices, currency).icon + formatCurrency(item.prices, currency).price}
+        </ProductPrice>
+        <ChooseFeaturesInCartDisplay item={item} />
+      </ProductDescription>
+      <CounterImageContainer>
+        <Counter inStock={item.inStock}>
+          <p onClick={() => counterIncrement(item)}>+</p>
+          <div>{item.count}</div>
+          <p onClick={() => counterDecrement(item)}>-</p>
+        </Counter>
+        <CartImageWrapper>
+          <CartImage>
+            <Img src={item.gallery[0]} alt={item.name} />
+          </CartImage>
+        </CartImageWrapper>
+      </CounterImageContainer>
+    </Li>
+  )
+
   render() {
     const {
       cartItems,
@@ -25,33 +50,7 @@ class ProductInCart extends React.PureComponent {
     } = this.props;
     return (
       <Ul>
-        {cartItems.map((item) => (
-          <Li inStock={item.inStock} key={Math.random() * 100_000}>
-            <ProductDescription>
-              <ProductName>{item.name}</ProductName>
-              <ProductName>{item.category}</ProductName>
-              <ProductPrice>
-                {formatCurrency(item.prices, currency).icon + formatCurrency(item.prices, currency).price}
-              </ProductPrice>
-              <ChooseFeaturesInCartDisplay item={item} />
-
-            </ProductDescription>
-
-            <CounterImageContainer>
-
-              <Counter inStock={item.inStock}>
-                <p onClick={() => counterIncrement(item)}>+</p>
-                <div>{item.count}</div>
-                <p onClick={() => counterDecrement(item)}>-</p>
-              </Counter>
-              <CartImageWrapper>
-                <CartImage>
-                  <Img src={item.gallery[0]} alt={item.name} />
-                </CartImage>
-              </CartImageWrapper>
-            </CounterImageContainer>
-          </Li>
-        ))}
+        {cartItems.map((item) => this.getItem(item, currency, counterIncrement, counterDecrement))}
       </Ul>
     );
   }

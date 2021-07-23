@@ -15,6 +15,17 @@ import ImageSliderInCard from './ImageSliderInCard';
 import ChooseProductFeaturesDisplay from './ChooseProductFeaturesDisplay';
 
 class Card extends React.PureComponent {
+  getRightElements = (item, counterIncrement, counterDecrement) => (
+    <RightElementsContainer>
+      <CounterContainer inStock={item.inStock}>
+        <p onClick={() => counterIncrement(item)}>+</p>
+        <div>{item.count}</div>
+        <p onClick={() => counterDecrement(item)}>–</p>
+      </CounterContainer>
+      <ImageSliderInCard item={item} />
+    </RightElementsContainer>
+  );
+
   render() {
     const {
       item,
@@ -32,14 +43,7 @@ class Card extends React.PureComponent {
           </ItemPrice>
           <ChooseProductFeaturesDisplay item={item} />
         </ProductDescription>
-        <RightElementsContainer>
-          <CounterContainer inStock={item.inStock}>
-            <p onClick={() => counterIncrement(item)}>+</p>
-            <div>{item.count}</div>
-            <p onClick={() => counterDecrement(item)}>–</p>
-          </CounterContainer>
-          <ImageSliderInCard item={item} />
-        </RightElementsContainer>
+        {this.getRightElements(item, counterIncrement, counterDecrement)}
       </CardWrapper>
     );
   }

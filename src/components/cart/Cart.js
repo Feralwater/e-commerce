@@ -8,6 +8,16 @@ import { addToCart, counterDecrement } from '../../actions/cartActions';
 import Card from './Card';
 
 class Cart extends React.PureComponent {
+  getCartItems = (cartItems) => (
+    <Ul>
+      {cartItems.map((item) => (
+        <CardContainer inStock={item.inStock} key={item.name}>
+          <Card item={item} />
+        </CardContainer>
+      ))}
+    </Ul>
+  );
+
   render() {
     const { cartItems } = this.props;
     return (
@@ -16,13 +26,7 @@ class Cart extends React.PureComponent {
         <Container>
           <Wrapper>
             <CartTitle>cart</CartTitle>
-            <Ul>
-              {cartItems.map((item) => (
-                <CardContainer inStock={item.inStock} key={item.name}>
-                  <Card item={item} />
-                </CardContainer>
-              ))}
-            </Ul>
+            {this.getCartItems(cartItems)}
           </Wrapper>
         </Container>
       </>

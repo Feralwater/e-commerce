@@ -65,6 +65,41 @@ class ProductScreen extends React.PureComponent {
     });
   };
 
+  setProduct = (product, match, validate, startValidate, attributes, currency) => (
+    <Container>
+      <Div>
+        <ImageSwitcher product={product} match={match} />
+        <DescriptionContainer>
+          <Name>{product.name}</Name>
+          <ProductDescription>{product.category}</ProductDescription>
+          <DisplayAndValidateProductAttributes
+            product={product}
+            validate={validate}
+            startValidate={startValidate}
+            attributes={attributes}
+            setSelectAttribute={this.setSelectAttribute}
+            setValidate={this.setValidate}
+          />
+          <Price>price:</Price>
+          <Currency>
+            {' '}
+            {formatCurrency(product.prices, currency).icon + formatCurrency(product.prices, currency).price}
+          </Currency>
+          <CartButton
+            product={product}
+            attributes={attributes}
+            setValidate2={this.setValidate2}
+          />
+          <Description>
+            <div
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(product.description) }}
+            />
+          </Description>
+        </DescriptionContainer>
+      </Div>
+    </Container>
+  );
+
   render() {
     const {
       currency,
@@ -82,39 +117,7 @@ class ProductScreen extends React.PureComponent {
       : (
         <>
           <Header />
-          <Container>
-            <Div>
-              <ImageSwitcher product={product} match={match} />
-              <DescriptionContainer>
-                <Name>{product.name}</Name>
-                <ProductDescription>{product.category}</ProductDescription>
-                <DisplayAndValidateProductAttributes
-                  product={product}
-                  validate={validate}
-                  startValidate={startValidate}
-                  attributes={attributes}
-                  setSelectAttribute={this.setSelectAttribute}
-                  setValidate={this.setValidate}
-                />
-                <Price>price:</Price>
-                <Currency>
-                  {' '}
-                  {formatCurrency(product.prices, currency).icon + formatCurrency(product.prices, currency).price}
-                </Currency>
-                <CartButton
-                  product={product}
-                  attributes={attributes}
-                  setValidate2={this.setValidate2}
-                />
-                <Description>
-                  <div
-                    dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(product.description) }}
-                  />
-                </Description>
-              </DescriptionContainer>
-
-            </Div>
-          </Container>
+          {this.setProduct(product, match, validate, startValidate, attributes, currency)}
         </>
       );
   }

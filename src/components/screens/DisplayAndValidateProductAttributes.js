@@ -17,7 +17,7 @@ class DisplayAndValidateProductAttributes extends React.PureComponent {
         {attribute.items.map((x) => (
           <Span
             inStock={product.inStock}
-            validate={validate[attribute.name1]}
+            validate={validate[attribute.name]}
             startValidate={startValidate}
             active={attributes[attribute.name]}
             color={x.value}

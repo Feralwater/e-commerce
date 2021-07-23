@@ -23,6 +23,27 @@ class ImageSliderInCard extends React.PureComponent {
     });
   };
 
+  getCartImg = (item, current) => (
+    <CartImg>
+      <PrevArrow
+        onClick={() => this.prevSlide(item.gallery.length, current)}
+      />
+      <NextArrow
+        onClick={() => this.nextSlide(item.gallery.length, current)}
+      />
+      {item.gallery.map((slide, index) => (
+        <Carousel
+          index={index}
+          key={Math.random() * 100_000}
+          current={current}
+        >
+          {index === current && (
+            <Slider src={slide} alt={item.name} />)}
+        </Carousel>
+      ))}
+    </CartImg>
+  );
+
   render() {
     const {
       item,
@@ -31,26 +52,7 @@ class ImageSliderInCard extends React.PureComponent {
     return (
       !Array.isArray(item.gallery) || item.gallery.length <= 0
         ? <img src="https://acoustic-atm.ru/userfiles/default_images/default.jpg" alt="" />
-        : (
-          <CartImg>
-            <PrevArrow
-              onClick={() => this.prevSlide(item.gallery.length, current)}
-            />
-            <NextArrow
-              onClick={() => this.nextSlide(item.gallery.length, current)}
-            />
-            {item.gallery.map((slide, index) => (
-              <Carousel
-                index={index}
-                key={Math.random() * 100_000}
-                current={current}
-              >
-                {index === current && (
-                  <Slider src={slide} alt={item.name} />)}
-              </Carousel>
-            ))}
-          </CartImg>
-        )
+        : this.getCartImg(item, current)
     );
   }
 }

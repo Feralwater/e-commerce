@@ -32,7 +32,6 @@ class Card extends React.PureComponent {
           </ItemPrice>
           <ChooseProductFeaturesDisplay item={item} />
         </ProductDescription>
-
         <RightElementsContainer>
           <CounterContainer inStock={item.inStock}>
             <p onClick={() => counterIncrement(item)}>+</p>

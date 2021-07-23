@@ -94,7 +94,7 @@ class Products extends React.PureComponent {
     } = this.props;
     return (
       <>
-        <Category>{activeCategory || 'all category'}</Category>
+        <Category>{activeCategory || 'all categories'}</Category>
         {
           !products
             ? (<div>Loading...</div>)

@@ -4,6 +4,21 @@ import { ToCartButton } from '../../styleComponents/ProductScreenStyles';
 import { addToCart } from '../../actions/cartActions';
 
 class CartButton extends React.PureComponent {
+  getToCartButton = (product, attributes, setValidate2, addToCart) => (
+    <ToCartButton
+      inStock={product.inStock}
+      onClick={() => {
+        if (Object.keys(attributes).length < product.attributes.length) {
+          setValidate2(true);
+        } else {
+          addToCart(product, attributes);
+        }
+      }}
+    >
+      {product.inStock ? 'add to cart' : 'out of stock'}
+    </ToCartButton>
+  );
+
   render() {
     const {
       product,
@@ -11,20 +26,7 @@ class CartButton extends React.PureComponent {
       setValidate2,
       addToCart,
     } = this.props;
-    return (
-      <ToCartButton
-        inStock={product.inStock}
-        onClick={() => {
-          if (Object.keys(attributes).length < product.attributes.length) {
-            setValidate2(true);
-          } else {
-            addToCart(product, attributes);
-          }
-        }}
-      >
-        {product.inStock ? 'add to cart' : 'out of stock'}
-      </ToCartButton>
-    );
+    return this.getToCartButton(product, attributes, setValidate2, addToCart);
   }
 }
 

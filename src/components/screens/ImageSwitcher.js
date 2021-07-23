@@ -20,6 +20,26 @@ class ImageSwitcher extends React.PureComponent {
     });
   };
 
+  getSmallImages = (product, match) => (
+    <SmallImagesContainer>
+      {product.gallery.map((img, index) => (
+        <div
+          key={Math.floor(Math.random() * 100_000)}
+          role="tab"
+          tabIndex={index}
+          onClick={() => {
+            this.setSelectedImg(index);
+          }}
+        >
+          <img
+            src={img}
+            alt={match.params.name}
+          />
+        </div>
+      ))}
+    </SmallImagesContainer>
+  );
+
   render() {
     const {
       product,
@@ -30,23 +50,7 @@ class ImageSwitcher extends React.PureComponent {
     } = this.state;
     return (
       <ImagesContainer>
-        <SmallImagesContainer>
-          {product.gallery.map((img, index) => (
-            <div
-              key={Math.floor(Math.random() * 100_000)}
-              role="tab"
-              tabIndex={index}
-              onClick={() => {
-                this.setSelectedImg(index);
-              }}
-            >
-              <img
-                src={img}
-                alt={match.params.name}
-              />
-            </div>
-          ))}
-        </SmallImagesContainer>
+        {this.getSmallImages(product, match)}
         <MainImageContainer>
           <Img src={product.gallery[imageIndex]} alt={match.params.name} />
         </MainImageContainer>

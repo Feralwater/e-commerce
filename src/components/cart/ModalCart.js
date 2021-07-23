@@ -20,6 +20,46 @@ class ModalCart extends React.PureComponent {
     };
   };
 
+  getContentContainer=(cartItems, currency) => (
+    <ContentContainer onClick={(e) => e.stopPropagation()}>
+      <Content>
+        <Title>
+          <span>My Bag</span>
+          ,
+          {' '}
+          {cartItems.length}
+          {' '}
+          items
+        </Title>
+        <ProductInCart cartItems={cartItems} />
+        {this.getCartBottomWrapper(currency, cartItems)}
+      </Content>
+    </ContentContainer>
+  )
+
+  getTotal=(currency, cartItems) => (
+    <p>
+      {currency.icon + cartItems.reduce((accum, item) => {
+        const { amount } = item.prices.find((current) => current.currency === currency.currency);
+        const { count } = item;
+        return Number((accum + amount * count).toFixed(2));
+      }, 0)}
+    </p>
+  )
+
+  getCartBottomWrapper=(currency, cartItems) => (
+    <CartBottomWrapper>
+      <Total>
+        <TotalTitle>Total</TotalTitle>
+        {this.getTotal(currency, cartItems)}
+      </Total>
+      <Buttons>
+        <ViewButton to="/cart">view bag</ViewButton>
+        <CheckButton to="/checkout">check out</CheckButton>
+      </Buttons>
+    </CartBottomWrapper>
+  )
+
   render() {
     const {
       cartItems,
@@ -36,35 +76,7 @@ class ModalCart extends React.PureComponent {
           this.enableScroll();
         }}
       >
-        <ContentContainer onClick={(e) => e.stopPropagation()}>
-          <Content>
-            <Title>
-              <span>My Bag</span>
-              ,
-              {' '}
-              {cartItems.length}
-              {' '}
-              items
-            </Title>
-            <ProductInCart cartItems={cartItems} />
-            <CartBottomWrapper>
-              <Total>
-                <TotalTitle>Total</TotalTitle>
-                <p>
-                  {currency.icon + cartItems.reduce((accum, item) => {
-                    const { amount } = item.prices.find((current) => current.currency === currency.currency);
-                    const { count } = item;
-                    return Number((accum + amount * count).toFixed(2));
-                  }, 0)}
-                </p>
-              </Total>
-              <Buttons>
-                <ViewButton to="/cart">view bag</ViewButton>
-                <CheckButton to="/checkout">check out</CheckButton>
-              </Buttons>
-            </CartBottomWrapper>
-          </Content>
-        </ContentContainer>
+        {this.getContentContainer(cartItems, currency)}
       </Modal>
     );
   }

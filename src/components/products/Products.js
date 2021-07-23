@@ -20,12 +20,18 @@ import { ReactComponent as Cart } from './svgImages/cart.svg';
 
 class Products extends React.PureComponent {
   componentDidMount() {
-    const { fetchProducts, activeCategory } = this.props;
+    const {
+      fetchProducts,
+      activeCategory,
+    } = this.props;
     fetchProducts(activeCategory || 'all');
   }
 
   componentDidUpdate(prevProps) {
-    const { fetchProducts, activeCategory } = this.props;
+    const {
+      fetchProducts,
+      activeCategory,
+    } = this.props;
     if (prevProps.activeCategory !== activeCategory) {
       fetchProducts(activeCategory || 'all');
     }
@@ -39,6 +45,45 @@ class Products extends React.PureComponent {
     }
   };
 
+  getCardLink = (activeCategory, product, currency) => (
+    <A to={`/categories/${activeCategory || 'all'}/${product.name}`}>
+      <span>out of stock</span>
+      <ImgContainer>
+        <Img src={product.gallery[0]} alt={product.title} />
+      </ImgContainer>
+      <ProductName>
+        {product.name}
+      </ProductName>
+      <Currency>
+        {formatCurrency(product.prices, currency).icon + formatCurrency(product.prices, currency).price}
+      </Currency>
+    </A>
+  );
+
+  getCartButton = (product, history, addToCart, activeCategory) => (
+    <CartButton
+      inStock={product.inStock}
+      onClick={() => {
+        this.addToCartFromPLP(product, history, addToCart, activeCategory);
+      }}
+    >
+      <Cart />
+    </CartButton>
+  );
+
+  getItem = (product, activeCategory, currency, history, addToCart) => (
+    <Li inStock={product.inStock} key={product.name}>
+      {this.getCardLink(activeCategory, product, currency)}
+      {this.getCartButton(product, history, addToCart, activeCategory)}
+    </Li>
+  );
+
+  getProductList = (products, activeCategory, currency, history, addToCart) => (
+    <Ul>
+      {products.map((product) => this.getItem(product, activeCategory, currency, history, addToCart))}
+    </Ul>
+  );
+
   render() {
     const {
       activeCategory,
@@ -49,40 +94,11 @@ class Products extends React.PureComponent {
     } = this.props;
     return (
       <>
-        <Category>{activeCategory || 'all'}</Category>
+        <Category>{activeCategory || 'all category'}</Category>
         {
           !products
             ? (<div>Loading...</div>)
-            : (
-              <Ul>
-                {products.map((product) => (
-                  <Li inStock={product.inStock} key={product.name}>
-                    <A to={`/categories/${activeCategory || 'all'}/${product.name}`}>
-                      <span>out of stock</span>
-                      <ImgContainer>
-                        <Img src={product.gallery[0]} alt={product.title} />
-                      </ImgContainer>
-                      <ProductName>
-                        {product.name}
-                      </ProductName>
-                      <Currency>
-                        {formatCurrency(product.prices, currency).icon + formatCurrency(product.prices, currency).price}
-                      </Currency>
-                    </A>
-                    <div>
-                      <CartButton
-                        inStock={product.inStock}
-                        onClick={() => {
-                          this.addToCartFromPLP(product, history, addToCart, activeCategory);
-                        }}
-                      >
-                        <Cart />
-                      </CartButton>
-                    </div>
-                  </Li>
-                ))}
-              </Ul>
-            )
+            : this.getProductList(products, activeCategory, currency, history, addToCart)
         }
       </>
     );

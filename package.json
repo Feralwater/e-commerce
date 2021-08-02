@@ -20,6 +20,7 @@
     "web-vitals": "^1.0.1",
     "dompurify": "^2.3.0"
   },
+  "proxy": "https://scandipwapmrev.indvp.com/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -29,10 +30,8 @@
     "eslint-write": "eslint --fix"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "extends": "@scandipwa",
+    "ignorePatterns": ["src/**"]
   },
   "browserslist": {
     "production": [

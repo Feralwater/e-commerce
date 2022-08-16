@@ -12,7 +12,10 @@ export const getItemsByCategory = gql`
         name
         description
         prices {
-          currency
+          currency {
+            label
+            symbol
+          }
           amount
         }
         attributes {

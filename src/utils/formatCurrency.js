@@ -1,5 +1,5 @@
 export default function formatCurrency(prices, currency) {
-  const price = Number(prices.find((x) => x.currency === currency).amount.toFixed(2)).toLocaleString();
+  const price = Number(prices.find((x) => x.currency.label === currency).amount.toFixed(2)).toLocaleString();
   switch (currency) {
     case 'USD':
     case 'AUD':
